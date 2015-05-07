@@ -9,7 +9,7 @@ package ex2_3_5;
  * The data is available here	http://www.ncdc.noaa.gov/
  *
  * Codes inspired from examples in Hadoop: The Definitive Guide
- * - Tom White - O'Reilly, 2nd Edition
+ * - Tom White - O'Reilly, 3rd Edition
  */
 import java.io.IOException;
 import org.apache.hadoop.fs.Path;
