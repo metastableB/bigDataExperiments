@@ -7,6 +7,7 @@
  *  
  */
 
+#include "../cpuTime.cpp"
 #include <iostream>
 #include <list>
  
@@ -97,8 +98,12 @@ int main() {
  		
  	}
  	cin >> s;
+    uint64 start,finish;
+    start = GetTimeMs64();
     g.BFS(s);
-    cout << "\n";
+    finish = GetTimeMs64();
+
+    cout << "\n" << "Time " << (finish - start) << "\n";
     return 0;
 }
  
