@@ -1,5 +1,11 @@
-
-
+/*
+ * Don K Dennis (metastableB)
+ * 8 May 2015
+ * donkdennis@gmail.com
+ *
+ * Program to print BFS traversal from a given source vertex. BFS(int s) 
+ *  
+ */
 
 import java.util.Scanner;
 import java.util.ArrayList;
