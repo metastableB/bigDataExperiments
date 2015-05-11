@@ -97,13 +97,10 @@ public class SSSPJob extends BaseJob {
 
             job.waitForCompletion(true); 
 
-            //Counters jobCntrs = job.getCounters();
-            //job.getCounters().findCounter(MyCounters.Counter).getValue();
             terminationValue =  job.getCounters().findCounter(MoreIterations.numberOfIterations).getValue();
             // if the counter's value is incremented in the reducer(s), then there are more
             // GRAY nodes to process implying that the iteration has to be continued.
             iterationCount++;
-            //terminationValue -- ;
         }
         return 0;
     }
@@ -114,7 +111,6 @@ public class SSSPJob extends BaseJob {
         if(args.length != 2){
             System.err.println("Usage: <in> <output name> ");
             System.exit(1);
-            System.out.println("Huh?");
         }
         System.exit(res);
     }

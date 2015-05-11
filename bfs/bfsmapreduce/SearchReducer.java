@@ -59,6 +59,7 @@ public class SearchReducer extends Reducer<Text, Text, Text, Text> {
             }        
         }
 
+        // Update the context object so that jobs can be informed about when to stop
         if (outNode.getColor() == Node.Color.GRAY)
             context.getCounter(MoreIterations.numberOfIterations).increment(1);
         context.write(key, new Text(outNode.getNodeInfo()));      

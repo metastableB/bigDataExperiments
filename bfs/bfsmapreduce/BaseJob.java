@@ -39,13 +39,6 @@ public abstract class BaseJob extends Configured implements Tool {
         
         job.setOutputKeyClass(jobInfo.getOutputKeyClass());
         job.setOutputValueClass(jobInfo.getOutputValueClass());
-       /*
-        job.setJarByClass(SSSPJob.class);
-        job.setMapperClass(SearchMapper.class);
-        job.setReducerClass(SearchReducer.class);
-        job.setNumReduceTasks(3);
-        job.setOutputValueClass(Text.class);
-        job.setOutputKeyClass(Text.class);*/
         return job;
     }
    
