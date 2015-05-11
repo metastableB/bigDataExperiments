@@ -30,7 +30,7 @@ public class Node {
  
     private String id;
     private int distance;
-    private List<String> edges; // list of edges
+    private List<String> edges = new ArrayList<String>();
     private Color color = Color.WHITE;
     private String parent;
  
@@ -106,10 +106,7 @@ public class Node {
     }
 
 	public String getId() {
-		if (this.id.length() > 0)
-			return this.id;
-		else 
-			return null;
+		return this.id;
 	}
 
 	public int getDistance() {

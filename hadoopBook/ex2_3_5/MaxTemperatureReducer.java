@@ -12,7 +12,7 @@ package ex2_3_5;
  * - Tom White - O'Reilly, 3rd Edition
  */
 
-import java.io.IOException;
+import java.io.IOException;	
 
 import org.apache.hadoop.io.IntWritable;
 import org.apache.hadoop.io.Text;

@@ -26,12 +26,15 @@ import org.apache.hadoop.io.LongWritable;
  
 // The type parameters are the input keys type, the input values type, the
 // output keys type, the output values type
-public class SearchMapper extends Mapper<Object, Text, Text, Text> {
+public class SearchMapper extends Mapper<LongWritable, Text, Text, Text> {
  
     // Types of the input key, input value and the Context object through which 
     // the Mapper communicates with the Hadoop framework
-    public void map(Object key, Text value, Context context, Node inNode)
+    @Override
+    public void map(LongWritable key, Text value, Context context)
             throws IOException, InterruptedException {
+
+        Node inNode = new Node(value.toString());
  
         // For each GRAY node, emit each of the adjacent nodes as a new node
         // (also GRAY) if the adjacent node is already processed

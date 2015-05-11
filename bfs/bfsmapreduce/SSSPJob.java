@@ -70,9 +70,9 @@ public class SSSPJob extends BaseJob {
         int iterationCount = 0; 
         Job job;
         // No of grey nodes
-        long terminationValue = 1;
+        long terminationValue = 3;
                
-        while( terminationValue >0){
+        while( terminationValue > 0 ){
             job = getJobConf(args); 
             String input, output;
            
@@ -97,23 +97,25 @@ public class SSSPJob extends BaseJob {
 
             job.waitForCompletion(true); 
 
-            Counters jobCntrs = job.getCounters();
-            terminationValue = jobCntrs.findCounter(MoreIterations.numberOfIterations).getValue();
+            //Counters jobCntrs = job.getCounters();
+            //job.getCounters().findCounter(MyCounters.Counter).getValue();
+            terminationValue =  job.getCounters().findCounter(MoreIterations.numberOfIterations).getValue();
             // if the counter's value is incremented in the reducer(s), then there are more
             // GRAY nodes to process implying that the iteration has to be continued.
             iterationCount++;
-            }
+            //terminationValue -- ;
+        }
         return 0;
     }
 
     public static void main(String[] args) throws Exception {
 
+        int res = ToolRunner.run(new Configuration(), new SSSPJob(), args);
         if(args.length != 2){
             System.err.println("Usage: <in> <output name> ");
             System.exit(1);
             System.out.println("Huh?");
         }
-        int res = ToolRunner.run(new Configuration(), new SSSPJob(), args);
         System.exit(res);
     }
 

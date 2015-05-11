@@ -25,8 +25,10 @@ public class SearchReducer extends Reducer<Text, Text, Text, Text> {
     // Types of the input key, the values associated with the key, the Context object for Reducers communication
     // with the Hadoop framework and the node whose information has to be output
     // the return type is a Node
-    public Node reduce(Text key, Iterable<Text> values, Context context, Node outNode)
+    @Override
+    public void reduce(Text key, Iterable<Text> values, Context context)
             throws IOException, InterruptedException {
+        Node outNode = new Node();
          
         // set the node id as the key
         outNode.setId(key.toString());
@@ -56,8 +58,11 @@ public class SearchReducer extends Reducer<Text, Text, Text, Text> {
                 outNode.setColor(inNode.getColor());
             }        
         }
+
+        if (outNode.getColor() == Node.Color.GRAY)
+            context.getCounter(MoreIterations.numberOfIterations).increment(1);
         context.write(key, new Text(outNode.getNodeInfo()));      
-        return outNode;
+        //return outNode;
     }
 }
 
