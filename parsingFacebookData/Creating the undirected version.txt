@@ -1,0 +1,13 @@
+The facebook data set we use in facebook_combined file lists the edges. Our implementation of the program uses an adjascency list where we add the edges to the list as they are encountered. This creates an unintended interpretation of the edges as directed. As the file does not contain an entry v,u corresponding to every u,v. The program intreprets the undirected edge between u and v as a directed edge.
+
+This is not a problem per say for the initial testing phase since our objective here is just to test the efficiency of the BFS algorithm rather than any other analysis. Though such an implementation does negative the actual purpose of the facebooks node
+connections - being inherently undirected.
+
+This can again fixed by a mapReduce procedure where in the map phase, where input is a <key> <node> text line,
+the mapper outputs a line <node> and <key> as well as <key> <node> and the reducer combines the output as usual. 
+
+For the undirected version we modify the directed version by first adding a context.write() line in the existing mapper class corresponding to the above <node> <key>. That is it :)
+
+In case sorting of the reduced output is preferred, see the scripts/sorting.sh file for instructions.
+
+We are assuming that for each edge (u,v) the edge (v,u) is not present in the file and not implementing any such checks.
