@@ -8,7 +8,7 @@ import org.apache.hadoop.io.LongWritable;
 /*
  * Don K Dennis (metastableB)
  * 8 May 2015
- * donkdennis@gmail.com
+ * donkdennis [at] gmail.com
  *
  * Code part of an implementation of BFS using mapReduce Framerwork.
  * This code is inspired by the article here at :
