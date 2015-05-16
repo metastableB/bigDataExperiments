@@ -3,9 +3,6 @@
  * 8 May 2015
  * donkdennis [at] gmail.com
  *
- * Code part of an implementation of BFS using mapReduce Framerwork.
- * This code is inspired by the article here at :
- * http://hadooptutorial.wikispaces.com/Iterative+MapReduce+and+Counters
  *
  * This is a generic job creator method which can be used to set up the job easily.
  * To use this method first define a getJobConf() method which will in turn extend the 
