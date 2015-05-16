@@ -16,6 +16,8 @@ public class bfsDriver {
 	System.out.println(	"		<no of Vertices V (numbered from 0)>\n");
 	System.out.println(	" 		<space separated edges u,v or -1 to exit>\n");
 	System.out.println(	"		<starting vertex>\n");
+	// Timing total execution time
+	long startTime = System.nanoTime();
 
     Integer u , v ,s;
     Scanner inp = new Scanner(System.in);		
@@ -41,11 +43,16 @@ public class bfsDriver {
 	 	}
 	
 	s = inp.nextInt();
-	long startTime = System.nanoTime();
+	long startTimeBFS = System.nanoTime();
 	G.BFS(s);
-	long endTime = System.nanoTime();
-	long duration = endTime - startTime;
-    System.out.println("Execution Time : " + duration + "ns (" + (double)duration/1000000 + "ms)");
+	long endTimeBFS = System.nanoTime();
+	long durationBFS = endTimeBFS - startTimeBFS;
 
+
+	long endTime = System.nanoTime();
+	long duration = (endTime - startTime);
+
+    System.out.println("Execution Time BFS : " + durationBFS + "ns (" + (double)durationBFS/1000000 + "ms)");
+    System.out.println("Execution Time Total : " + duration + "ns (" + (double)duration/1000000 + "ms)");
     }
 }

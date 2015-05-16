@@ -27,9 +27,20 @@ public class FacebookReducer extends Reducer<Text, Text, Text, Text> {
         // We dont have to do anything specific here, just write the entries to the file
         // In the format required.
         StringBuffer neighbours = new StringBuffer();
-	  	for (Text value : values) {
-	  		neighbours.append(value.toString()).append(", ");
-       	}
+	  	//  neighbours.append("\t");
+        try {
+            for (Text v : values) {
+                neighbours.append(v.toString()).append(",");
+            }
+        } catch (NullPointerException e) {
+            e.printStackTrace();
+            System.exit(1);
+        }
+        neighbours.append("|");
+        neighbours.append("Integer.MAX_VALUE").append("|");
+        neighbours.append("WHITE").append("|");
+        neighbours.append("null");
+
         context.write(key, new Text(neighbours.toString()));      
         //return outNode;
     }

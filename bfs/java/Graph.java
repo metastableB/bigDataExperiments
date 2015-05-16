@@ -13,7 +13,7 @@ import java.util.ArrayList;
 
 class Graph {
 	private int V;
-	private ArrayList < ArrayList<Integer> > adjList ;
+	private ArrayList <ArrayList<Integer> > adjList ;
 
 	Graph(int v) {
 		this.V = v;
