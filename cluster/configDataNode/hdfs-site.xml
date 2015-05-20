@@ -25,7 +25,7 @@
  
     <property>
         <name>dfs.replication</name>
-        <value>3</value>
+        <value>10</value>
     </property>
     
     <property>
@@ -46,7 +46,7 @@
 
     <property>
          <name>dfs.namenode.secondary.http-address</name>
-         <value>192.168.1.241:50090</value>
+         <value>192.168.1.241:50091</value>
          <description>Your Secondary NameNode hostname for http access.</description>
     </property>
 </configuration>
