@@ -22,8 +22,8 @@
         <value>yarn</value>
     </property>
     <property>
-		<name>mapred.job.tracker.http.address</name>
-		<value>192.168.1.241:50080</value>
+	<name>mapred.job.tracker.http.address</name>
+	<value>192.168.1.241:50080</value>
     </property>
 </configuration>
 
