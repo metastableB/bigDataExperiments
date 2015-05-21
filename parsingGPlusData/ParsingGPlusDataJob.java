@@ -1,15 +1,15 @@
 /*
  * Don K Dennis (metastableB)
- * 16 May 2015
+ * 21 May 2015
  * donkdennis [at] gmail.com
  *
- * Parsing input from the SNAP LiveJournal dataset
+ * Parsing input from the SNAP GPlus
  * into files with values of the form 
  * node cdv list of neighbours
  *
  * Input of following form in each line indicating an edge
  * <node> <node>
- * (c) IIIT Delhi , 2015
+ * (c) IIIT Delhi,2015
  */
 import org.apache.hadoop.conf.Configuration;
 import org.apache.hadoop.conf.Configured;
@@ -24,7 +24,7 @@ import org.apache.hadoop.mapreduce.lib.input.FileInputFormat;
 import org.apache.hadoop.mapreduce.lib.output.FileOutputFormat;
 import org.apache.hadoop.fs.Path;
 
-public class ParsingLiveJournalDataJob extends BaseJob {
+public class ParsingGPlusDataJob extends BaseJob {
     // method to set the configuration for the job and the mapper and the reducer classes
     private Job getJobConf(String[] args) 
         throws Exception {
@@ -38,12 +38,12 @@ public class ParsingLiveJournalDataJob extends BaseJob {
 
             @Override
             public Class<?> getJarByClass() {
-                return ParsingLiveJournalDataJob.class;
+                return ParsingGPlusDataJob.class;
             }
 
             @Override
             public Class<? extends Mapper> getMapperClass() {
-                return LiveJournalMapper.class;
+                return GPlusMapper.class;
             }
 
             @Override
@@ -58,11 +58,11 @@ public class ParsingLiveJournalDataJob extends BaseJob {
 
             @Override
             public Class<? extends Reducer> getReducerClass() {
-                return LiveJournalReducer.class;
+                return GPlusReducer.class;
             }
         };
        
-        return setupJob("LiveJournalParsingJob", jobInfo);
+        return setupJob("GPlusParsingJob", jobInfo);
     
     }
 
@@ -89,7 +89,7 @@ public class ParsingLiveJournalDataJob extends BaseJob {
             System.err.println("Usage: <in> <output name> ");
             System.exit(1);
         }
-        int res = ToolRunner.run(new Configuration(), new ParsingLiveJournalDataJob(), args);
+        int res = ToolRunner.run(new Configuration(), new ParsingGPlusDataJob(), args);
         System.exit(res);
     }
 
