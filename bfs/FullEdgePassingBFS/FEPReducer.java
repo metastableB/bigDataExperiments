@@ -44,8 +44,10 @@ public class FEPReducer extends Reducer<Text, Text, Text, Text> {
             else if (inNode.getColor() == Node.Color.GRAY) {
                 outNode.setDistance(inNode.getDistance());
                 outNode.setColor(inNode.getColor());
-            }
-            else if (inNode.getEdges().size() > 0) {
+            } // The second part of the if condition is so that the hack edge
+              // from mapper is not added after an adj list is added
+            else if (inNode.getEdges().size() > 0 &&
+             outNode.getEdges().size() < inNode.getEdges().size()) {
                 outNode.setEdges(inNode.getEdges());
             }
         }

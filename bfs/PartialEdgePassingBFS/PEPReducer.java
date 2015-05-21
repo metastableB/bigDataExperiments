@@ -37,7 +37,6 @@ public class PEPReducer extends Reducer<Text, Text, Text, Text> {
             if (inNode.getColor() == Node.Color.BLACK) {
                 outNode.setDistance(inNode.getDistance());
                 outNode.setColor(inNode.getColor());
-                outNode.setEdges(inNode.getEdges());
                 break;
             } 
 
@@ -45,6 +44,8 @@ public class PEPReducer extends Reducer<Text, Text, Text, Text> {
                 outNode.setDistance(inNode.getDistance());
                 outNode.setColor(inNode.getColor());
             }
+            // If its black, we dont add the adj list. If its gray, it will have a white counterpart
+            // We dont have to worry about the adj list hack used in mapper since those were for GRAY
             else if (inNode.getColor() == Node.Color.WHITE) {
                 outNode.setEdges(inNode.getEdges());
             }

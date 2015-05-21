@@ -134,7 +134,7 @@ public class Node {
 
 	public void setEdges(List<String> e) {
 		for (String s : e)
-			if(s.length() > 0)
+			if(s.length() > 0 )
 				this.edges.add(s);
 	}
 
