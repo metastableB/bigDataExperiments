@@ -45,7 +45,7 @@
     </property>
     <property>
          <name>dfs.namenode.secondary.http-address</name>
-         <value>192.168.1.241:50091</value>
+         <value>192.168.1.241:50090</value>
          <description>Your Secondary NameNode hostname for http access.</description>
     </property>
 </configuration>

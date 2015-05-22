@@ -21,6 +21,14 @@
         <name>mapreduce.framework.name</name>
         <value>yarn</value>
     </property>
+    <property>	
+	<name>mapreduce.jobhistory.address </name>
+	<value>ubuntu01:10020</value>
+    </property>
+    <property>
+	<name>mapreduce.jobhistory.webapp.address</name>
+	<value>ubuntu01:19888</value>
+    </property>
     <property>
 	<name>mapred.job.tracker.http.address</name>
 	<value>192.168.1.241:50080</value>
