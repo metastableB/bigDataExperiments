@@ -24,7 +24,7 @@ import org.apache.hadoop.fs.Path;
 
 public class SSSPJob extends BaseJob {
     // method to set the configuration for the job and the mapper and the reducer classes
-    private Job getJobConf(String[] args) 
+    private Job getJobConf(String[] args, String jobName) 
         throws Exception {
 
     // Defining the abstract class objects
@@ -60,7 +60,7 @@ public class SSSPJob extends BaseJob {
             }
         };
        
-        return setupJob("ssspjob", jobInfo);
+        return setupJob(jobName, jobInfo);
     
     }
 
@@ -70,10 +70,11 @@ public class SSSPJob extends BaseJob {
         int iterationCount = 0; 
         Job job;
         // No of grey nodes 
-        long terminationValue = 1;
-               
+        long terminationValue = 1 , runningTime, startTime, endTime, totalRunningTime = 0;
+        String jobName = new String(args[2]+"_pass_");
+
         while( terminationValue > 0 ){
-            job = getJobConf(args); 
+            job = getJobConf(args , (jobName + (String.valueOf(terminationValue)))); 
             String input, output;
            
             // Setting the input file and output file for each iteration
@@ -95,13 +96,24 @@ public class SSSPJob extends BaseJob {
             FileInputFormat.setInputPaths(job, new Path(input));
             FileOutputFormat.setOutputPath(job, new Path(output));
 
+            startTime = System.nanoTime();
             job.waitForCompletion(true); 
+            endTime = System.nanoTime();
+            runningTime = endTime - startTime;
+            totalRunningTime += runningTime;
 
+            System.out.println("=====================================================================");
+            System.out.println ("Job Running Time = " + runningTime);
             terminationValue =  job.getCounters().findCounter(MoreIterations.numberOfIterations).getValue();
+            System.out.println("Counter "+terminationValue);
+            System.out.println("=====================================================================");
             // if the counter's value is incremented in the reducer(s), then there are more
             // GRAY nodes to process implying that the iteration has to be continued.
             iterationCount++;
         }
+        System.out.println("=====================================================================");
+        System.out.println("Total Running Time "+ getRunningTime(totalRunningTime));
+        System.out.println("=====================================================================");
         return 0;
     }
 
@@ -113,6 +125,15 @@ public class SSSPJob extends BaseJob {
             System.exit(1);
         }
         System.exit(res);
+    }
+    public static String getRunningTime( long nanoTime) {
+        long x = nanoTime / 1000000000;
+        long seconds = x % 60;
+        x /= 60;
+        long minutes = x % 60 ;
+        x /= 60;
+        long hours = x % 24;
+        return Long.toString(hours) + " hours," + Long.toString(minutes) +" Minutes," + Long.toString(seconds) + " seconds" ;
     }
 
 }
