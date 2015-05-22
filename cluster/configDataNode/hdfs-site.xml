@@ -25,7 +25,7 @@
  
     <property>
         <name>dfs.replication</name>
-        <value>10</value>
+        <value>3</value>
     </property>
     
     <property>
