@@ -25,37 +25,43 @@ public class PMSReducer extends Reducer<Text, Text, Text, Text> {
     @Override
     public void reduce(Text key, Iterable<Text> values, Context context)
             throws IOException, InterruptedException {
-        Node outNode = new Node();
-         
-        // set the node id as the key
-        outNode.setId(key.toString());
-        int numberOfGray = 0;
-
+        PMSNode outNode = new PMSNode();
+        // We use this flag to initialize the outNode correctly
+        boolean allocaedFlag = false;
+        int numberOfGray=0;
+      
         for (Text value : values) {
-            Node inNode = new Node(key.toString() + "\t" + value.toString());
+            PMSNode inNode = new PMSNode(key.toString() + "\t" + value.toString());
+            if(allocaedFlag == false) {
+                outNode = new PMSNode(inNode.getNumberOfSources());
+                outNode.setId(key.toString());
+                allocaedFlag = true;
+            }
             
             int i = 0;
-            for(Node.Color color : inNode.getColor()) {
-                if(color == Node.Color.BLACK) {
-                    outNode.setColorOf(i,Node.Color.BLACK);
+            for(PMSNode.Color color : inNode.getColor()) {
+                if(color == PMSNode.Color.BLACK) {
+                    outNode.setColorOf(i,PMSNode.Color.BLACK);
                     outNode.setDistanceOf(i,inNode.getDistanceOf(i));
                 }
-                else if (color == Node.Color.GRAY) {
-                    if (outNode.getColorOf(i) == Node.Color.WHITE){
-                        outNode.setColorOf(i,Node.Color.GRAY);
-                        numberOfGray++;
-                    }
+                else if (color == PMSNode.Color.GRAY) {
+                    if (outNode.getColorOf(i) == PMSNode.Color.WHITE)
+                        outNode.setColorOf(i,PMSNode.Color.GRAY);
                     if (outNode.getDistanceOf(i) > inNode.getDistanceOf(i))
-                        outNode.setDistanceOf(i,inNode.setDistanceOf(i));
+                        outNode.setDistanceOf(i,inNode.getDistanceOf(i));
                 }
+                i++;
             }
             if(inNode.getEdges().size() > 0)
                 outNode.setEdges(inNode.getEdges());
         }
-
-        context.getCounter(MoreIterations.numberOfIterations).increment(numberOfGray);
+        for(PMSNode.Color color : outNode.getColor()) 
+                if (color == PMSNode.Color.GRAY) 
+                    numberOfGray++;
+        // The counter before the mapers start is zero, by incrementing
+        // we are flagging the presence of more gray nodes to explore
+        context.getCounter(MoreIterations.numberOfIterations).increment((numberOfGray));
         context.write(key, new Text(outNode.getNodeInfo()));  
-
     }
 }
 

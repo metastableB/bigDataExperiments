@@ -30,29 +30,36 @@ public class PMSMapper extends Mapper<LongWritable, Text, Text, Text> {
     @Override
     public void map(LongWritable key, Text value, Context context)
             throws IOException, InterruptedException {
-        bool flag = false;
-        Node inNode = new Node(value.toString());
+        boolean flag = false;
+        PMSNode inNode = new PMSNode(value.toString());
  
-        for (Node.Color color : inNode.getColor()) {
-            if (color == Node.Color.GRAY) {
+        for (PMSNode.Color color : inNode.getColor()) {
+            if (color == PMSNode.Color.GRAY) {
                 flag = true;
                 break;
             }
         }
-        int numberOfGray = 0;
+        // Hack so that the adj list is not null
+ //       List <String> hack= new ArrayList<String> ();
+ //       hack.add(" ");
+
         // If there is atleast one gray node, explore all adj list
+        // Give a little thought to the logic here, we are not keeping
+        // track of the path. Just the distance from any of the sources
+        // and the mimimum of them
         if ( flag == true ) {
             for (String v : inNode.getEdges()) {
-                if (v.size() > 0) {
+                if (v.length() > 0) {
                     // Initialize an empty white nodes
-                    Node outNode = new Node(inNode.getNumberOfSources());
+                    PMSNode outNode = new PMSNode(inNode.getNumberOfSources());
                     outNode.setId(v);
-                    // set GRAY according to inpNode
+                    // set GRAY according to inNode
                     int i = 0;
-                    for(Node.Color c : inpNode.getColor()) {
-                        if (c == Node.Color.GRAY) {
-                            outNode.setColorOf(i,Node.Color.GRAY);
-                            outNode.setDistanceOf(i,inpNode.getDistance() + 1);
+                    for(PMSNode.Color c : inNode.getColor()) {
+                        if (c == PMSNode.Color.GRAY) {
+                            outNode.setColorOf(i,PMSNode.Color.GRAY);
+                            outNode.setDistanceOf(i,inNode.getDistanceOf(i) + 1);
+                           // outNode.setEdges(hack);
                         }
                         i++;
                     }
@@ -61,17 +68,15 @@ public class PMSMapper extends Mapper<LongWritable, Text, Text, Text> {
             }
             // Write back the current node with GRAY turned to black
             int i = 0;
-            for (Node.Color c : inpNode.getColor()) {
-                if(c == Node.Color.GRAY) {
-                    inpNode.setColorOf(i,Node.Color.Black);
-                    numberOfGray++ ;
+            for (PMSNode.Color c : inNode.getColor()) {
+                if(c == PMSNode.Color.GRAY) {
+                    inNode.setColorOf(i,PMSNode.Color.BLACK);
                 }
                 i++;
             }
         }
-        //Decrease the number of gray nodes
-        context.getCounter(MoreIterations.numberOfIterations).increment( -1*(numberOfGray) );
-        context.write(new Text(inpNode.getId()) , inpNode.getNodeInfo());
+        
+        context.write(new Text(inNode.getId()) , inNode.getNodeInfo());
     }
 }
 

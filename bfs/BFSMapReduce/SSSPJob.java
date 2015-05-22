@@ -69,8 +69,8 @@ public class SSSPJob extends BaseJob {
     public int run(String[] args) throws Exception {
         int iterationCount = 0; 
         Job job;
-        // No of grey nodes
-        long terminationValue = 3;
+        // No of grey nodes 
+        long terminationValue = 1;
                
         while( terminationValue > 0 ){
             job = getJobConf(args); 

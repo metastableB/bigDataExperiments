@@ -35,22 +35,22 @@ public class PMSNode {
     private List<String> edges = new ArrayList<String>();
     private List<Color> colors = new ArrayList<Color>();
      
-    public Node(){
+    public PMSNode(){
     	edges = new ArrayList<String>();
     	colors = new ArrayList<Color> ();
     	distances = new ArrayList<Integer>();
     }
 
-    public Node(int noOfSources) {       
+    public PMSNode(int noOfSources) {       
         edges = new ArrayList<String>();
-        for (int i=0 ; i<noOfSources ; i++) {
+        for (int i = 0 ; i < noOfSources ; i++) {
             distances.add(Integer.MAX_VALUE);
             colors.add(Color.WHITE);
        	}
     }
 
  
-    public Node(String nodeInfo) {
+    public PMSNode(String nodeInfo) {
         // splitting the input line record by tab delimiter into key and value
         String[] inputLine = nodeInfo.split("\t");
         String key = "", value = ""; 
@@ -68,9 +68,9 @@ public class PMSNode {
         String[] tokens = value.split("\\|");
         this.id = key;
  		
- 		// Adding the distances. Beware there is no checking for spaces or null
+ 		// Adding the distances. Beware there is no checking for spaces or tabs
         try {
-        	for (String s : token[0].split(",")) {
+        	for (String s : tokens[0].split(",")) {
 	     	   if (s.equals("Integer.MAX_VALUE")) {
 	        	    this.distances.add(Integer.MAX_VALUE);
 	        	} // To be safe against null strings after last comma (,) 
@@ -84,9 +84,14 @@ public class PMSNode {
 	    }
 	    // Adding colors
 	    try {
-	    	for (Color s : token[1].split(",")) {
-	    		if(s.length() > 0)
-	    			this.colors.add(s);
+	    	for (String s : tokens[1].split(",")) {
+	    		if (s.equals("WHITE"))
+	    			this.colors.add(Color.WHITE);
+	    		else if (s.equals ("GRAY"))
+	    			this.colors.add(Color.GRAY);
+	    		else if (s.equals("BLACK"))
+	    			this.colors.add(Color.BLACK);
+
 	      	}
 	    } catch (Exception e) {
 	    	e.printStackTrace();
@@ -94,16 +99,18 @@ public class PMSNode {
 	    }
 
 	    // Adding adj list
-	    try {
-	       	for (String s : tokens[2].split(",")) {
-	            if (s.length() > 0) {
-	                edges.add(s);
-	            }
-	        }
-	    } catch (Exception e) {
-	    	e.printStackTrace();
-	    	System.exit(1);
-	    }
+	    if (tokens.length == 3) {
+		    try {
+		       	for (String s : tokens[2].split(",")) {
+		            if (s.length() > 0) {
+		                edges.add(s);
+		            }
+		        }
+		    } catch (Exception e) {
+		    	e.printStackTrace();
+		    	System.exit(1);
+		    }
+		}
     }
  
     // Recreating the I/O information format
@@ -147,7 +154,6 @@ public class PMSNode {
 		return this.distances;
 	}
 
-	// Returns a csv of edges
 	public List<String> getEdges() {
 		return this.edges;
 	}
@@ -165,11 +171,15 @@ public class PMSNode {
 		return this.colors.get(i);
 	}
 
+	public Integer getDistanceOf(int i) {
+		return this.distances.get(i);
+	}
+
 	public void setId(String s) {
 		this.id = s;
 	}
 
-	public void setDistance(List<Integer> d) {
+	public void setDistanceIntegerList(List<Integer> d) {
 		for (Integer i : d)
 			this.distances.add(i);
 	}
@@ -181,8 +191,7 @@ public class PMSNode {
 	}
 	public void setColor( List<Color> s) {
 		for(Color c : s)
-			if(c.length() > 0)
-				this.colors.add(s);
+			this.colors.add(c);
 	}
 
 	public void setEdges(List<String> e) {
