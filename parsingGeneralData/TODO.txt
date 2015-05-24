@@ -1,0 +1,6 @@
+Things to modify 
+
+No of Splits defined in BaseJob
+Input/output format defined in reducer
+source node defined in reducer
+tab and space delimited data
