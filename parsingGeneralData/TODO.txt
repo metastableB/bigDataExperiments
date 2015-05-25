@@ -1,0 +1,12 @@
+Things to modify 
+
+No of Splits defined in BaseJob
+Input/output format defined in reducer
+source node defined in reducer
+tab and space delimited data
+
+FOR MOST DATA SOURCE IS 
+0
+for GPLUS
+source is 
+116374117927631468606
