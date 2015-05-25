@@ -74,7 +74,7 @@ public class SSSPJob extends BaseJob {
         String jobName = new String(args[2]+"_pass_");
 
         while( terminationValue > 0 ){
-            job = getJobConf(args , (jobName + (String.valueOf(terminationValue)))); 
+            job = getJobConf(args , (jobName + (String.valueOf(iterationCount)))); 
             String input, output;
            
             // Setting the input file and output file for each iteration
@@ -120,8 +120,8 @@ public class SSSPJob extends BaseJob {
     public static void main(String[] args) throws Exception {
 
         int res = ToolRunner.run(new Configuration(), new SSSPJob(), args);
-        if(args.length != 2){
-            System.err.println("Usage: <in> <output name> ");
+        if(args.length != 3){
+            System.err.println("Usage: <in> <output name> <jobname>");
             System.exit(1);
         }
         System.exit(res);
