@@ -30,12 +30,14 @@ public class LiveJournalReducer extends Reducer<Text, Text, Text, Text> {
 	  	//  neighbours.append("\t");
         try {
             for (Text v : values) {
-                neighbours.append(v.toString()).append(",");
+                if(!v.toString().equals("-1"))
+                    neighbours.append(v.toString()).append(",");
             }
         } catch (NullPointerException e) {
             e.printStackTrace();
             System.exit(1);
         }
+        
 
         if ( key.toString().equals("0")){
             neighbours.append("|");
