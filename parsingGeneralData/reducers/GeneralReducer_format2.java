@@ -39,7 +39,8 @@ public class GeneralReducer extends Reducer<Text, Text, Text, Text> {
         }
         try {
             for (Text v : values) {
-                neighbours.append(v.toString()).append(",");
+                if(!v.toString().equals("-1"))
+                    neighbours.append(v.toString()).append(",");
             }
         } catch (NullPointerException e) {
             e.printStackTrace();
