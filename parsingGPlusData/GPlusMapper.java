@@ -35,6 +35,9 @@ public class GPlusMapper extends Mapper<LongWritable, Text, Text, Text> {
         // Split at space
         String[] nodes = valueString.split(" "); 
         context.write(new Text(nodes[0]), new Text(nodes[1]));
+        // We are writing a flag value here to make sure the second node is 
+        // counted atleast once even if it does not have any outnodes
+        context.write(new Text(nodes[1]), new Text("-1"));
         
     }
 }

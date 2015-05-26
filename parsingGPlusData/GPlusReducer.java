@@ -29,8 +29,9 @@ public class GPlusReducer extends Reducer<Text, Text, Text, Text> {
         StringBuffer neighbours = new StringBuffer();
 	  	//  neighbours.append("\t");
         try {
-            for (Text v : values) {
-                neighbours.append(v.toString()).append(",");
+             for (Text v : values) {
+                if(!v.toString().equals("-1"))
+                    neighbours.append(v.toString()).append(",");
             }
         } catch (NullPointerException e) {
             e.printStackTrace();
