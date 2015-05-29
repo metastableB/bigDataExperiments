@@ -78,7 +78,7 @@ public class PEPJob extends BaseJob {
         String jobName = new String(args[2]+"_pass_");
                
         while( terminationValue > 0 ){
-            job = getJobConf(args , (jobName + (String.valueOf(terminationValue)))); 
+            job = getJobConf(args , (jobName + (String.valueOf(iterationCount)))); 
             String input, output;
            
             // Setting the input file and output file for each iteration
@@ -89,6 +89,11 @@ public class PEPJob extends BaseJob {
             //       before proceding.
             
             // for the first iteration the input will be the first input argument
+            if (iterationCount == 0) 
+                input = args[0];
+            else
+                // for the remaining iterations, the input will be the output of the previous iteration
+                input = args[1] + iterationCount;
             output = args[1] + (iterationCount + 1);
 
             FileInputFormat.setInputPaths(job, new Path(input));
@@ -117,8 +122,8 @@ public class PEPJob extends BaseJob {
 
     public static void main(String[] args) throws Exception {
 
-        if(args.length != 2){
-            System.err.println("Usage: <in> <output name> ");
+        if(args.length != 3){
+            System.err.println("Usage: <in> <output name> <jobName>");
             System.exit(1);
         }
         int res = ToolRunner.run(new Configuration(), new PEPJob(), args);

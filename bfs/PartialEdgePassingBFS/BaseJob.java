@@ -31,7 +31,7 @@ public abstract class BaseJob extends Configured implements Tool {
         job.setReducerClass(jobInfo.getReducerClass());
        
         // TODO : set number of reducers as required
-        job.setNumReduceTasks(1);
+        job.setNumReduceTasks(8);
         
         job.setOutputKeyClass(jobInfo.getOutputKeyClass());
         job.setOutputValueClass(jobInfo.getOutputValueClass());

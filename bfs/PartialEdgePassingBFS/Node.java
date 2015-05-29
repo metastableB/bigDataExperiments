@@ -69,16 +69,18 @@ public class Node {
         }
         this.color = Color.valueOf(tokens[1]);
 
-	    try {
-	       	for (String s : tokens[2].split(",")) {
-	            if (s.length() > 0) {
-	                edges.add(s);
-	            }
-	        }
-	    } catch (Exception e) {
-	    	e.printStackTrace();
-	    	System.exit(1);
-	    }
+        if(tokens.length == 3) {
+            try {
+                   for (String s : tokens[2].split(",")) {
+                        if (s.length() > 0) {
+                            edges.add(s);
+                        }
+                    }
+            } catch (Exception e) {
+                e.printStackTrace();
+                System.exit(1);
+            }
+        }
     }
  
     // Recreating the I/O information format

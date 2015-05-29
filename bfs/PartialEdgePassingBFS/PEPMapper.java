@@ -41,9 +41,7 @@ public class PEPMapper extends Mapper<LongWritable, Text, Text, Text> {
         if (inNode.getColor() == Node.Color.GRAY) {
             for (String neighbor : inNode.getEdges()) { 
                 Node adjacentNode = new Node();
-                // Work around against IndexOutOfBound. 
-                List <String> s = new ArrayList <String> ();
-                s.add(" ");
+              
                 // Remember that the current node only has the value the id 
                 // of its neighbour, and not the object itself. Therefore at 
                 // this stage there is no way of knowing and assigning any of
@@ -52,7 +50,6 @@ public class PEPMapper extends Mapper<LongWritable, Text, Text, Text> {
                 adjacentNode.setId(neighbor); 
                 adjacentNode.setDistance(inNode.getDistance() + 1);
                 adjacentNode.setColor(Node.Color.GRAY);
-                adjacentNode.setEdges(s);
                 context.write(new Text(adjacentNode.getId()), adjacentNode.getNodeInfo());
             }
             inNode.setColor(Node.Color.BLACK);
