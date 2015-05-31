@@ -39,9 +39,6 @@ public class PMSMapper extends Mapper<LongWritable, Text, Text, Text> {
                 break;
             }
         }
-        // Hack so that the adj list is not null
- //       List <String> hack= new ArrayList<String> ();
- //       hack.add(" ");
 
         // If there is atleast one gray node, explore all adj list
         // Give a little thought to the logic here, we are not keeping

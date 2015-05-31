@@ -79,7 +79,7 @@ public class PMSJob extends BaseJob {
         
         while( terminationValue > 0 ){
 
-            job = getJobConf(args, (jobName + (String.valueOf(terminationValue)))); 
+            job = getJobConf(args, (jobName + (String.valueOf(iterationCount)))); 
             String input, output;
            
             // Setting the input file and output file for each iteration
