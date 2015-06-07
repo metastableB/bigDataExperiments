@@ -60,13 +60,15 @@ public class ErdosRenyiJob extends Configured implements Tool  {
         System.out.println("=====================================================================");
         System.out.println ("Job Running Time = " + runningTime);
         //terminationValue =  nodeCreatorJob.getCounters().findCounter(MoreIterations.numberOfIterations).getValue();
-        System.out.println("Counter "+terminationValue);
         System.out.println("=====================================================================");
    
         // SECOND JOB Here
         String edgeCreatorJobName = new String(args[2]+ "_edgeCreator");
-        
-        Job edgeCreatorJob = new Job(getConf());
+        Configuration conf = new Configuration();
+		conf.set("end", "200");
+		conf.set("probability","0.5");
+		
+        Job edgeCreatorJob = new Job(conf);
         edgeCreatorJob.setJarByClass(getClass());
         edgeCreatorJob.setJobName(edgeCreatorJobName);
         
