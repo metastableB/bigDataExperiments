@@ -72,7 +72,7 @@ public class ErdosRenyiJob extends Configured implements Tool  {
         edgeCreatorJob.setJarByClass(getClass());
         edgeCreatorJob.setJobName(edgeCreatorJobName);
         
-        input = args[1];
+        input = args[1]+"/nodes/";
         output = args[1]+"/edges/";
         FileInputFormat.setInputPaths(edgeCreatorJob, new Path(input));
         FileOutputFormat.setOutputPath(edgeCreatorJob, new Path(output));
