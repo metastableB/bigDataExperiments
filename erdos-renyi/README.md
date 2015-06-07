@@ -21,7 +21,7 @@ where,
          # 202	400
          # etc.
          
- * **outPath** the output directory. It will containg a subdirectory named graph with the required graph. The output format is as follows:
+ * **outPath** the output directory. It will containg a subdirectory named *edges* with the required graph. The output format is as follows:
  
  
          <NodeId>	<commma separated edges list>

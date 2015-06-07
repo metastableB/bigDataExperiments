@@ -40,7 +40,7 @@ public class ErdosRenyiJob extends Configured implements Tool  {
         nodeCreatorJob.setJobName(nodeCreatorJobName);
         String input, output;
         input = args[0];
-        output = args[1];
+        output = args[1]+"/nodes/";
         FileInputFormat.setInputPaths(nodeCreatorJob, new Path(input));
         FileOutputFormat.setOutputPath(nodeCreatorJob, new Path(output));
         
@@ -73,7 +73,7 @@ public class ErdosRenyiJob extends Configured implements Tool  {
         edgeCreatorJob.setJobName(edgeCreatorJobName);
         
         input = args[1];
-        output = args[1]+"/graph/";
+        output = args[1]+"/edges/";
         FileInputFormat.setInputPaths(edgeCreatorJob, new Path(input));
         FileOutputFormat.setOutputPath(edgeCreatorJob, new Path(output));
         
