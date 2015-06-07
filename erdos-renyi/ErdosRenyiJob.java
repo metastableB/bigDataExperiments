@@ -65,8 +65,8 @@ public class ErdosRenyiJob extends Configured implements Tool  {
         // SECOND JOB Here
         String edgeCreatorJobName = new String(args[2]+ "_edgeCreator");
         Configuration conf = new Configuration();
-		conf.set("end", "200");
-		conf.set("probability","0.5");
+		conf.set("end", args[3]);
+		conf.set("probability",args[4]);
 		
         Job edgeCreatorJob = new Job(conf);
         edgeCreatorJob.setJarByClass(getClass());
@@ -98,8 +98,8 @@ public class ErdosRenyiJob extends Configured implements Tool  {
 
     public static void main(String[] args) throws Exception {
 
-        if(args.length != 3){
-            System.err.println("Usage: <in> <output name> <jobName>");
+        if(args.length != 5){
+            System.err.println("Usage: <in> <output name> <jobName> <LastNode> <probability>");
             System.exit(1);
         }
         int res = ToolRunner.run(new ErdosRenyiJob(), args);
