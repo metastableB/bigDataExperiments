@@ -3,7 +3,7 @@
  * 07 June 2015
  * donkdennis [at] gmail.com
  * 
- * Erdos-Renyi Graph generator
+ * Erdos-Renyi Edge Reducer
  *
  * (c) IIIT Delhi, 2015
  */
