@@ -29,6 +29,8 @@ where,
 * **N** is the greatest node ID.
 * **P** is the probability of edge existence.
 
+Remember to specify the number of reducer tasks as required in #L50 and #L75 of ErdosRenyiJob.java
+
  &copy;IIIT Delhi , 2015.
          
     
