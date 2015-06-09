@@ -1,14 +1,15 @@
 /*
  * Don K Dennis (metastableB)
- * 21 May 2015
+ * 09 June 2015
  * donkdennis [at] gmail.com
  *
- * Partial Edges Passing BFS,
+ * Finding the SSSP for a unweighed graph using 
+ * the Partial Edges Passing BFS (PEP) algorithm,
  * As described in
  * Implementing Quasi-Parallel BFS in MapReduce for Large Scale Social Network Mining
  * - Lianghong Qian, Lei Fan and Jianhua Li
  *
- * I/O: source<tab>distance|color|adjacency list (csv)
+ * I/O: source<tab>distance|color|parent|adjacency list (csv)
  *
  * (c) IIIT Delhi, 2015
  */
@@ -58,7 +59,7 @@ public class Node {
         }
  		// String.split() uses regex, therefore escape |
         String[] tokens = value.split("\\|");
-        // tokens[0] = distance, tokens[1]= color, tokens[2]= Adjacency List
+        // tokens[0] = distance, tokens[1]= color, token[2]= parent,tokens[3]= Adjacency List
  
         this.id = key;
  		
@@ -68,8 +69,9 @@ public class Node {
             this.distance = Integer.parseInt(tokens[0]);
         }
         this.color = Color.valueOf(tokens[1]);
+        this.parent = null;
 
-        if(tokens.length == 3) {
+        if(tokens.length == 4) {
             try {
                    for (String s : tokens[2].split(",")) {
                         if (s.length() > 0) {
@@ -91,8 +93,9 @@ public class Node {
         } else {
             s.append("Integer.MAX_VALUE").append("|");
         }
-        // append the color of the node
+        // append the color of the node and parent
         s.append(color.toString()).append("|");
+        s.append(parent).append("|");
  		// append adjacency list
  		try {
             for (String v : edges) {
@@ -121,6 +124,9 @@ public class Node {
 	public Color getColor () {
 		return this.color;
 	}
+    public String getParent() {
+        return this.parent;
+    }
 
 	public void setId(String s) {
 		this.id = s;
@@ -133,6 +139,10 @@ public class Node {
 	public void setColor( Color s) {
 		this.color = s;
 	}
+    public void setParent(String p) {
+        this.parent = p;
+    }
+
 
 	public void setEdges(List<String> e) {
 		for (String s : e)
