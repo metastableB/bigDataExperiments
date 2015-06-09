@@ -10,6 +10,7 @@
  * - Lianghong Qian, Lei Fan and Jianhua Li
  *
  * Inp: source<tab>distance|color|parent|adjacency list (csv)
+ * Out: source<tab>distance|color|parent|<adj list>
  *
  * (c) IIIT Delhi, 2015
  */
@@ -18,7 +19,7 @@ import java.io.IOException;
 import java.util.*;
 import org.apache.hadoop.mapreduce.Mapper;
 import org.apache.hadoop.mapreduce.Mapper.Context;
- 
+import org.apache.hadoop.conf.Configuration;
 import org.apache.hadoop.io.Text;
 import org.apache.hadoop.io.LongWritable;
 
@@ -35,18 +36,21 @@ public class SSSP_UW_PEPMapper extends Mapper<LongWritable, Text, Text, Text> {
         Node inNode = new Node(value.toString());
         Configuration conf = context.getConfiguration();
         String param1 = conf.get("source");
-        boolean whiteAndSource = (inNode.getColor()  == Node.Color.WHITE) ;
-		whiteAndSource = whiteAndSource	&& (inNOde.getId().equals(param1));
+        boolean whiteAndSource = (inNode.getColor() == Node.Color.WHITE) ;
+		whiteAndSource = whiteAndSource	&& (inNode.getId().equals(param1));
  
         // For each GRAY node, emit each of the adjacent nodes as a new node
         // (also GRAY) if the adjacent node is already processed
         // and colored BLACK, the reducer retains the color BLACK
         // Note that the mapper is not differentiating between BLACK GREY AND WHITE
 
-        if (inNode.getColor() == Node.Color.GRAY || whiteAndSource) {
+        if ((inNode.getColor() == Node.Color.GRAY) || whiteAndSource) {
+            if (whiteAndSource) {
+                inNode.setParent("source");
+                inNode.setDistance(0);
+            }
             for (String neighbor : inNode.getEdges()) { 
                 Node adjacentNode = new Node();
-              
                 // Remember that the current node only has the value the id 
                 // of its neighbour, and not the object itself. Therefore at 
                 // this stage there is no way of knowing and assigning any of
@@ -59,8 +63,7 @@ public class SSSP_UW_PEPMapper extends Mapper<LongWritable, Text, Text, Text> {
                 context.write(new Text(adjacentNode.getId()), adjacentNode.getNodeInfo());
             }
             inNode.setColor(Node.Color.BLACK);
-            if (whiteAndSource)
-            	inNode.setParent("source");
+           
         }
         // Emit the input node, other wise the BLACK color change(if it happens)
         // Wont be persistent and even if the node is WHITE, we need it for further

@@ -46,13 +46,13 @@ public class SSSP_UW_PEPReducer extends Reducer<Text, Text, Text, Text> {
             else if (inNode.getColor() == Node.Color.GRAY) {
                 outNode.setDistance(inNode.getDistance());
                 outNode.setColor(inNode.getColor());
-                outNode.setParent(inNode.gerParent());
+                outNode.setParent(inNode.getParent());
             }
             // If its black, we dont add the adj list. If its gray, it will have a white counterpart
             // We dont have to worry about the adj list hack used in mapper since those were for GRAY
             else if (inNode.getColor() == Node.Color.WHITE) {
                 outNode.setEdges(inNode.getEdges());
-            }
+            } 
         }
         // Update the context object so that jobs can be informed about when to stop
         if (outNode.getColor() == Node.Color.GRAY)

@@ -69,11 +69,11 @@ public class Node {
             this.distance = Integer.parseInt(tokens[0]);
         }
         this.color = Color.valueOf(tokens[1]);
-        this.parent = null;
+        this.parent = tokens[2];
 
         if(tokens.length == 4) {
             try {
-                   for (String s : tokens[2].split(",")) {
+                   for (String s : tokens[3].split(",")) {
                         if (s.length() > 0) {
                             edges.add(s);
                         }
@@ -136,7 +136,7 @@ public class Node {
 		this.distance = d;
 	}
 
-	public void setColor( Color s) {
+	public void setColor(Color s) {
 		this.color = s;
 	}
     public void setParent(String p) {

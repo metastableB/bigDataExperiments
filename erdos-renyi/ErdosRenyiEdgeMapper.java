@@ -13,6 +13,7 @@
 import java.io.IOException;
 import java.util.*;
 import org.apache.hadoop.mapreduce.Mapper;
+import org.apache.hadoop.conf.Configuration;
 import org.apache.hadoop.mapreduce.Mapper.Context;
 import org.apache.hadoop.conf.Configuration; 
 import org.apache.hadoop.io.Text;
