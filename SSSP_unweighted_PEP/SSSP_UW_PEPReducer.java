@@ -1,14 +1,16 @@
 /*
  * Don K Dennis (metastableB)
- * 21 May 2015
+ * 09 June 2015
  * donkdennis [at] gmail.com
  *
- * Partial Edges Passing BFS,
+ * Finding the SSSP for a unweighed graph using 
+ * the Partial Edges Passing BFS (PEP) algorithm,
  * As described in
  * Implementing Quasi-Parallel BFS in MapReduce for Large Scale Social Network Mining
  * - Lianghong Qian, Lei Fan and Jianhua Li
  *
- * I/O: source<tab>distance|color|adjacency list (csv)
+ * Inp: source<tab>distance|color|parent|adjacency list (csv)
+ * Out: source<tab>distance|color|parent|<adj list>
  *
  * (c) IIIT Delhi, 2015
  */
@@ -17,7 +19,7 @@ import org.apache.hadoop.mapreduce.Reducer;
 import org.apache.hadoop.io.Text;
 import java.io.IOException;
 
-public class PEPReducer extends Reducer<Text, Text, Text, Text> {
+public class SSSP_UW_PEPReducer extends Reducer<Text, Text, Text, Text> {
  
     // Types of the input key, the values associated with the key, the Context object for Reducers communication
     // with the Hadoop framework and the node whose information has to be output
@@ -37,12 +39,14 @@ public class PEPReducer extends Reducer<Text, Text, Text, Text> {
             if (inNode.getColor() == Node.Color.BLACK) {
                 outNode.setDistance(inNode.getDistance());
                 outNode.setColor(inNode.getColor());
+                outNode.setParent(inNode.getParent());
                 break;
             } 
 
             else if (inNode.getColor() == Node.Color.GRAY) {
                 outNode.setDistance(inNode.getDistance());
                 outNode.setColor(inNode.getColor());
+                outNode.setParent(inNode.gerParent());
             }
             // If its black, we dont add the adj list. If its gray, it will have a white counterpart
             // We dont have to worry about the adj list hack used in mapper since those were for GRAY
