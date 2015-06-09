@@ -1,14 +1,15 @@
-    /*
+ /*
  * Don K Dennis (metastableB)
- * 21 May 2015
+ * 09 June 2015
  * donkdennis [at] gmail.com
  *
- * Partial Edges Passing BFS,
+ * Finding the SSSP for a unweighed graph using 
+ * the Partial Edges Passing BFS (PEP) algorithm,
  * As described in
  * Implementing Quasi-Parallel BFS in MapReduce for Large Scale Social Network Mining
  * - Lianghong Qian, Lei Fan and Jianhua Li
  *
- * I/O: source<tab>distance|color|adjacency list (csv)
+ * Inp: source<tab>distance|color|parent|adjacency list (csv)
  *
  * (c) IIIT Delhi, 2015
  */
@@ -23,7 +24,7 @@ import org.apache.hadoop.io.LongWritable;
 
 // The type parameters are the input keys type, the input values type, the
 // output keys type, the output values type
-public class PEPMapper extends Mapper<LongWritable, Text, Text, Text> {
+public class SSSP_UW_PEPMapper extends Mapper<LongWritable, Text, Text, Text> {
  
     // Types of the input key, input value and the Context object through which 
     // the Mapper communicates with the Hadoop framework
@@ -32,13 +33,17 @@ public class PEPMapper extends Mapper<LongWritable, Text, Text, Text> {
             throws IOException, InterruptedException {
 
         Node inNode = new Node(value.toString());
+        Configuration conf = context.getConfiguration();
+        String param1 = conf.get("source");
+        boolean whiteAndSource = (inNode.getColor()  == Node.Color.WHITE) ;
+		whiteAndSource = whiteAndSource	&& (inNOde.getId().equals(param1));
  
         // For each GRAY node, emit each of the adjacent nodes as a new node
         // (also GRAY) if the adjacent node is already processed
         // and colored BLACK, the reducer retains the color BLACK
         // Note that the mapper is not differentiating between BLACK GREY AND WHITE
 
-        if (inNode.getColor() == Node.Color.GRAY) {
+        if (inNode.getColor() == Node.Color.GRAY || whiteAndSource) {
             for (String neighbor : inNode.getEdges()) { 
                 Node adjacentNode = new Node();
               
@@ -50,9 +55,12 @@ public class PEPMapper extends Mapper<LongWritable, Text, Text, Text> {
                 adjacentNode.setId(neighbor); 
                 adjacentNode.setDistance(inNode.getDistance() + 1);
                 adjacentNode.setColor(Node.Color.GRAY);
+                adjacentNode.setParent(inNode.getId());
                 context.write(new Text(adjacentNode.getId()), adjacentNode.getNodeInfo());
             }
             inNode.setColor(Node.Color.BLACK);
+            if (whiteAndSource)
+            	inNode.setParent("source");
         }
         // Emit the input node, other wise the BLACK color change(if it happens)
         // Wont be persistent and even if the node is WHITE, we need it for further
