@@ -47,6 +47,7 @@ public class ErdosRenyiJob extends Configured implements Tool  {
         nodeCreatorJob.setMapperClass(ErdosRenyiNodeMapper.class);
  	   	//nodeCreatorJob.setCombinerClass(Combiner.class);
     	nodeCreatorJob.setReducerClass(ErdosRenyiNodeReducer.class);
+        nodeCreatorJob.setNumReduceTasks(5);
 
     	nodeCreatorJob.setOutputKeyClass(Text.class);
     	nodeCreatorJob.setOutputValueClass(Text.class);
@@ -71,6 +72,7 @@ public class ErdosRenyiJob extends Configured implements Tool  {
         Job edgeCreatorJob = new Job(conf);
         edgeCreatorJob.setJarByClass(getClass());
         edgeCreatorJob.setJobName(edgeCreatorJobName);
+        edgeCreatorJob.setNumReduceTasks(5);
         
         input = args[1]+"/nodes/";
         output = args[1]+"/edges/";
@@ -99,6 +101,7 @@ public class ErdosRenyiJob extends Configured implements Tool  {
     public static void main(String[] args) throws Exception {
 
         if(args.length != 5){
+            // Last node is size from 0 including both
             System.err.println("Usage: <in> <output name> <jobName> <LastNode> <probability>");
             System.exit(1);
         }
