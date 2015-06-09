@@ -1,0 +1,1081 @@
+15/05/30 02:40:56 INFO client.RMProxy: Connecting to ResourceManager at /192.168.1.241:8050
+15/05/30 02:40:57 WARN mapreduce.JobResourceUploader: Hadoop command-line option parsing not performed. Implement the Tool interface and execute your application with ToolRunner to remedy this.
+15/05/30 02:40:57 INFO input.FileInputFormat: Total input paths to process : 9
+15/05/30 02:40:58 INFO mapreduce.JobSubmitter: number of splits:9
+15/05/30 02:40:58 INFO mapreduce.JobSubmitter: Submitting tokens for job: job_1432724659305_0041
+15/05/30 02:40:58 INFO impl.YarnClientImpl: Submitted application application_1432724659305_0041
+15/05/30 02:40:58 INFO mapreduce.Job: The url to track the job: http://ubuntu01:8088/proxy/application_1432724659305_0041/
+15/05/30 02:40:58 INFO mapreduce.Job: Running job: job_1432724659305_0041
+15/05/30 02:41:05 INFO mapreduce.Job: Job job_1432724659305_0041 running in uber mode : false
+15/05/30 02:41:05 INFO mapreduce.Job:  map 0% reduce 0%
+15/05/30 02:41:18 INFO mapreduce.Job:  map 33% reduce 0%
+15/05/30 02:41:18 INFO mapreduce.Job: Task Id : attempt_1432724659305_0041_m_000005_0, Status : FAILED
+Error: java.lang.NumberFormatException: For input string: ""
+	at java.lang.NumberFormatException.forInputString(NumberFormatException.java:65)
+	at java.lang.Integer.parseInt(Integer.java:592)
+	at java.lang.Integer.parseInt(Integer.java:615)
+	at Node.<init>(Node.java:68)
+	at PEPMapper.map(PEPMapper.java:34)
+	at PEPMapper.map(PEPMapper.java:26)
+	at org.apache.hadoop.mapreduce.Mapper.run(Mapper.java:146)
+	at org.apache.hadoop.mapred.MapTask.runNewMapper(MapTask.java:787)
+	at org.apache.hadoop.mapred.MapTask.run(MapTask.java:341)
+	at org.apache.hadoop.mapred.YarnChild$2.run(YarnChild.java:163)
+	at java.security.AccessController.doPrivileged(Native Method)
+	at javax.security.auth.Subject.doAs(Subject.java:422)
+	at org.apache.hadoop.security.UserGroupInformation.doAs(UserGroupInformation.java:1657)
+	at org.apache.hadoop.mapred.YarnChild.main(YarnChild.java:158)
+
+15/05/30 02:41:18 INFO mapreduce.Job: Task Id : attempt_1432724659305_0041_m_000007_0, Status : FAILED
+Error: java.lang.NumberFormatException: For input string: ""
+	at java.lang.NumberFormatException.forInputString(NumberFormatException.java:65)
+	at java.lang.Integer.parseInt(Integer.java:592)
+	at java.lang.Integer.parseInt(Integer.java:615)
+	at Node.<init>(Node.java:68)
+	at PEPMapper.map(PEPMapper.java:34)
+	at PEPMapper.map(PEPMapper.java:26)
+	at org.apache.hadoop.mapreduce.Mapper.run(Mapper.java:146)
+	at org.apache.hadoop.mapred.MapTask.runNewMapper(MapTask.java:787)
+	at org.apache.hadoop.mapred.MapTask.run(MapTask.java:341)
+	at org.apache.hadoop.mapred.YarnChild$2.run(YarnChild.java:163)
+	at java.security.AccessController.doPrivileged(Native Method)
+	at javax.security.auth.Subject.doAs(Subject.java:422)
+	at org.apache.hadoop.security.UserGroupInformation.doAs(UserGroupInformation.java:1657)
+	at org.apache.hadoop.mapred.YarnChild.main(YarnChild.java:158)
+
+15/05/30 02:41:18 INFO mapreduce.Job: Task Id : attempt_1432724659305_0041_m_000004_0, Status : FAILED
+Error: java.lang.NumberFormatException: For input string: ""
+	at java.lang.NumberFormatException.forInputString(NumberFormatException.java:65)
+	at java.lang.Integer.parseInt(Integer.java:592)
+	at java.lang.Integer.parseInt(Integer.java:615)
+	at Node.<init>(Node.java:68)
+	at PEPMapper.map(PEPMapper.java:34)
+	at PEPMapper.map(PEPMapper.java:26)
+	at org.apache.hadoop.mapreduce.Mapper.run(Mapper.java:146)
+	at org.apache.hadoop.mapred.MapTask.runNewMapper(MapTask.java:787)
+	at org.apache.hadoop.mapred.MapTask.run(MapTask.java:341)
+	at org.apache.hadoop.mapred.YarnChild$2.run(YarnChild.java:163)
+	at java.security.AccessController.doPrivileged(Native Method)
+	at javax.security.auth.Subject.doAs(Subject.java:422)
+	at org.apache.hadoop.security.UserGroupInformation.doAs(UserGroupInformation.java:1657)
+	at org.apache.hadoop.mapred.YarnChild.main(YarnChild.java:158)
+
+15/05/30 02:41:18 INFO mapreduce.Job: Task Id : attempt_1432724659305_0041_m_000003_0, Status : FAILED
+Error: java.lang.NumberFormatException: For input string: ""
+	at java.lang.NumberFormatException.forInputString(NumberFormatException.java:65)
+	at java.lang.Integer.parseInt(Integer.java:592)
+	at java.lang.Integer.parseInt(Integer.java:615)
+	at Node.<init>(Node.java:68)
+	at PEPMapper.map(PEPMapper.java:34)
+	at PEPMapper.map(PEPMapper.java:26)
+	at org.apache.hadoop.mapreduce.Mapper.run(Mapper.java:146)
+	at org.apache.hadoop.mapred.MapTask.runNewMapper(MapTask.java:787)
+	at org.apache.hadoop.mapred.MapTask.run(MapTask.java:341)
+	at org.apache.hadoop.mapred.YarnChild$2.run(YarnChild.java:163)
+	at java.security.AccessController.doPrivileged(Native Method)
+	at javax.security.auth.Subject.doAs(Subject.java:422)
+	at org.apache.hadoop.security.UserGroupInformation.doAs(UserGroupInformation.java:1657)
+	at org.apache.hadoop.mapred.YarnChild.main(YarnChild.java:158)
+
+15/05/30 02:41:19 INFO mapreduce.Job:  map 0% reduce 0%
+15/05/30 02:41:19 INFO mapreduce.Job: Task Id : attempt_1432724659305_0041_m_000001_0, Status : FAILED
+Error: java.lang.NumberFormatException: For input string: ""
+	at java.lang.NumberFormatException.forInputString(NumberFormatException.java:65)
+	at java.lang.Integer.parseInt(Integer.java:592)
+	at java.lang.Integer.parseInt(Integer.java:615)
+	at Node.<init>(Node.java:68)
+	at PEPMapper.map(PEPMapper.java:34)
+	at PEPMapper.map(PEPMapper.java:26)
+	at org.apache.hadoop.mapreduce.Mapper.run(Mapper.java:146)
+	at org.apache.hadoop.mapred.MapTask.runNewMapper(MapTask.java:787)
+	at org.apache.hadoop.mapred.MapTask.run(MapTask.java:341)
+	at org.apache.hadoop.mapred.YarnChild$2.run(YarnChild.java:163)
+	at java.security.AccessController.doPrivileged(Native Method)
+	at javax.security.auth.Subject.doAs(Subject.java:422)
+	at org.apache.hadoop.security.UserGroupInformation.doAs(UserGroupInformation.java:1657)
+	at org.apache.hadoop.mapred.YarnChild.main(YarnChild.java:158)
+
+15/05/30 02:41:19 INFO mapreduce.Job: Task Id : attempt_1432724659305_0041_m_000008_0, Status : FAILED
+Error: java.lang.NumberFormatException: For input string: ""
+	at java.lang.NumberFormatException.forInputString(NumberFormatException.java:65)
+	at java.lang.Integer.parseInt(Integer.java:592)
+	at java.lang.Integer.parseInt(Integer.java:615)
+	at Node.<init>(Node.java:68)
+	at PEPMapper.map(PEPMapper.java:34)
+	at PEPMapper.map(PEPMapper.java:26)
+	at org.apache.hadoop.mapreduce.Mapper.run(Mapper.java:146)
+	at org.apache.hadoop.mapred.MapTask.runNewMapper(MapTask.java:787)
+	at org.apache.hadoop.mapred.MapTask.run(MapTask.java:341)
+	at org.apache.hadoop.mapred.YarnChild$2.run(YarnChild.java:163)
+	at java.security.AccessController.doPrivileged(Native Method)
+	at javax.security.auth.Subject.doAs(Subject.java:422)
+	at org.apache.hadoop.security.UserGroupInformation.doAs(UserGroupInformation.java:1657)
+	at org.apache.hadoop.mapred.YarnChild.main(YarnChild.java:158)
+
+15/05/30 02:41:20 INFO mapreduce.Job:  map 11% reduce 0%
+15/05/30 02:41:20 INFO mapreduce.Job: Task Id : attempt_1432724659305_0041_m_000006_0, Status : FAILED
+Error: java.lang.NumberFormatException: For input string: ""
+	at java.lang.NumberFormatException.forInputString(NumberFormatException.java:65)
+	at java.lang.Integer.parseInt(Integer.java:592)
+	at java.lang.Integer.parseInt(Integer.java:615)
+	at Node.<init>(Node.java:68)
+	at PEPMapper.map(PEPMapper.java:34)
+	at PEPMapper.map(PEPMapper.java:26)
+	at org.apache.hadoop.mapreduce.Mapper.run(Mapper.java:146)
+	at org.apache.hadoop.mapred.MapTask.runNewMapper(MapTask.java:787)
+	at org.apache.hadoop.mapred.MapTask.run(MapTask.java:341)
+	at org.apache.hadoop.mapred.YarnChild$2.run(YarnChild.java:163)
+	at java.security.AccessController.doPrivileged(Native Method)
+	at javax.security.auth.Subject.doAs(Subject.java:422)
+	at org.apache.hadoop.security.UserGroupInformation.doAs(UserGroupInformation.java:1657)
+	at org.apache.hadoop.mapred.YarnChild.main(YarnChild.java:158)
+
+15/05/30 02:41:20 INFO mapreduce.Job: Task Id : attempt_1432724659305_0041_m_000000_0, Status : FAILED
+Error: java.lang.NumberFormatException: For input string: ""
+	at java.lang.NumberFormatException.forInputString(NumberFormatException.java:65)
+	at java.lang.Integer.parseInt(Integer.java:592)
+	at java.lang.Integer.parseInt(Integer.java:615)
+	at Node.<init>(Node.java:68)
+	at PEPMapper.map(PEPMapper.java:34)
+	at PEPMapper.map(PEPMapper.java:26)
+	at org.apache.hadoop.mapreduce.Mapper.run(Mapper.java:146)
+	at org.apache.hadoop.mapred.MapTask.runNewMapper(MapTask.java:787)
+	at org.apache.hadoop.mapred.MapTask.run(MapTask.java:341)
+	at org.apache.hadoop.mapred.YarnChild$2.run(YarnChild.java:163)
+	at java.security.AccessController.doPrivileged(Native Method)
+	at javax.security.auth.Subject.doAs(Subject.java:422)
+	at org.apache.hadoop.security.UserGroupInformation.doAs(UserGroupInformation.java:1657)
+	at org.apache.hadoop.mapred.YarnChild.main(YarnChild.java:158)
+
+15/05/30 02:41:20 INFO mapreduce.Job: Task Id : attempt_1432724659305_0041_m_000002_0, Status : FAILED
+Error: java.lang.NumberFormatException: For input string: ""
+	at java.lang.NumberFormatException.forInputString(NumberFormatException.java:65)
+	at java.lang.Integer.parseInt(Integer.java:592)
+	at java.lang.Integer.parseInt(Integer.java:615)
+	at Node.<init>(Node.java:68)
+	at PEPMapper.map(PEPMapper.java:34)
+	at PEPMapper.map(PEPMapper.java:26)
+	at org.apache.hadoop.mapreduce.Mapper.run(Mapper.java:146)
+	at org.apache.hadoop.mapred.MapTask.runNewMapper(MapTask.java:787)
+	at org.apache.hadoop.mapred.MapTask.run(MapTask.java:341)
+	at org.apache.hadoop.mapred.YarnChild$2.run(YarnChild.java:163)
+	at java.security.AccessController.doPrivileged(Native Method)
+	at javax.security.auth.Subject.doAs(Subject.java:422)
+	at org.apache.hadoop.security.UserGroupInformation.doAs(UserGroupInformation.java:1657)
+	at org.apache.hadoop.mapred.YarnChild.main(YarnChild.java:158)
+
+15/05/30 02:41:21 INFO mapreduce.Job:  map 0% reduce 0%
+15/05/30 02:41:25 INFO mapreduce.Job: Task Id : attempt_1432724659305_0041_m_000000_1, Status : FAILED
+Error: java.lang.NumberFormatException: For input string: ""
+	at java.lang.NumberFormatException.forInputString(NumberFormatException.java:65)
+	at java.lang.Integer.parseInt(Integer.java:592)
+	at java.lang.Integer.parseInt(Integer.java:615)
+	at Node.<init>(Node.java:68)
+	at PEPMapper.map(PEPMapper.java:34)
+	at PEPMapper.map(PEPMapper.java:26)
+	at org.apache.hadoop.mapreduce.Mapper.run(Mapper.java:146)
+	at org.apache.hadoop.mapred.MapTask.runNewMapper(MapTask.java:787)
+	at org.apache.hadoop.mapred.MapTask.run(MapTask.java:341)
+	at org.apache.hadoop.mapred.YarnChild$2.run(YarnChild.java:163)
+	at java.security.AccessController.doPrivileged(Native Method)
+	at javax.security.auth.Subject.doAs(Subject.java:422)
+	at org.apache.hadoop.security.UserGroupInformation.doAs(UserGroupInformation.java:1657)
+	at org.apache.hadoop.mapred.YarnChild.main(YarnChild.java:158)
+
+15/05/30 02:41:27 INFO mapreduce.Job: Task Id : attempt_1432724659305_0041_m_000006_1, Status : FAILED
+Error: java.lang.NumberFormatException: For input string: ""
+	at java.lang.NumberFormatException.forInputString(NumberFormatException.java:65)
+	at java.lang.Integer.parseInt(Integer.java:592)
+	at java.lang.Integer.parseInt(Integer.java:615)
+	at Node.<init>(Node.java:68)
+	at PEPMapper.map(PEPMapper.java:34)
+	at PEPMapper.map(PEPMapper.java:26)
+	at org.apache.hadoop.mapreduce.Mapper.run(Mapper.java:146)
+	at org.apache.hadoop.mapred.MapTask.runNewMapper(MapTask.java:787)
+	at org.apache.hadoop.mapred.MapTask.run(MapTask.java:341)
+	at org.apache.hadoop.mapred.YarnChild$2.run(YarnChild.java:163)
+	at java.security.AccessController.doPrivileged(Native Method)
+	at javax.security.auth.Subject.doAs(Subject.java:422)
+	at org.apache.hadoop.security.UserGroupInformation.doAs(UserGroupInformation.java:1657)
+	at org.apache.hadoop.mapred.YarnChild.main(YarnChild.java:158)
+
+15/05/30 02:41:27 INFO mapreduce.Job: Task Id : attempt_1432724659305_0041_m_000004_1, Status : FAILED
+Error: java.lang.NumberFormatException: For input string: ""
+	at java.lang.NumberFormatException.forInputString(NumberFormatException.java:65)
+	at java.lang.Integer.parseInt(Integer.java:592)
+	at java.lang.Integer.parseInt(Integer.java:615)
+	at Node.<init>(Node.java:68)
+	at PEPMapper.map(PEPMapper.java:34)
+	at PEPMapper.map(PEPMapper.java:26)
+	at org.apache.hadoop.mapreduce.Mapper.run(Mapper.java:146)
+	at org.apache.hadoop.mapred.MapTask.runNewMapper(MapTask.java:787)
+	at org.apache.hadoop.mapred.MapTask.run(MapTask.java:341)
+	at org.apache.hadoop.mapred.YarnChild$2.run(YarnChild.java:163)
+	at java.security.AccessController.doPrivileged(Native Method)
+	at javax.security.auth.Subject.doAs(Subject.java:422)
+	at org.apache.hadoop.security.UserGroupInformation.doAs(UserGroupInformation.java:1657)
+	at org.apache.hadoop.mapred.YarnChild.main(YarnChild.java:158)
+
+15/05/30 02:41:28 INFO mapreduce.Job:  map 11% reduce 0%
+15/05/30 02:41:28 INFO mapreduce.Job: Task Id : attempt_1432724659305_0041_m_000007_1, Status : FAILED
+Error: java.lang.NumberFormatException: For input string: ""
+	at java.lang.NumberFormatException.forInputString(NumberFormatException.java:65)
+	at java.lang.Integer.parseInt(Integer.java:592)
+	at java.lang.Integer.parseInt(Integer.java:615)
+	at Node.<init>(Node.java:68)
+	at PEPMapper.map(PEPMapper.java:34)
+	at PEPMapper.map(PEPMapper.java:26)
+	at org.apache.hadoop.mapreduce.Mapper.run(Mapper.java:146)
+	at org.apache.hadoop.mapred.MapTask.runNewMapper(MapTask.java:787)
+	at org.apache.hadoop.mapred.MapTask.run(MapTask.java:341)
+	at org.apache.hadoop.mapred.YarnChild$2.run(YarnChild.java:163)
+	at java.security.AccessController.doPrivileged(Native Method)
+	at javax.security.auth.Subject.doAs(Subject.java:422)
+	at org.apache.hadoop.security.UserGroupInformation.doAs(UserGroupInformation.java:1657)
+	at org.apache.hadoop.mapred.YarnChild.main(YarnChild.java:158)
+
+15/05/30 02:41:28 INFO mapreduce.Job: Task Id : attempt_1432724659305_0041_m_000008_1, Status : FAILED
+Error: java.lang.NumberFormatException: For input string: ""
+	at java.lang.NumberFormatException.forInputString(NumberFormatException.java:65)
+	at java.lang.Integer.parseInt(Integer.java:592)
+	at java.lang.Integer.parseInt(Integer.java:615)
+	at Node.<init>(Node.java:68)
+	at PEPMapper.map(PEPMapper.java:34)
+	at PEPMapper.map(PEPMapper.java:26)
+	at org.apache.hadoop.mapreduce.Mapper.run(Mapper.java:146)
+	at org.apache.hadoop.mapred.MapTask.runNewMapper(MapTask.java:787)
+	at org.apache.hadoop.mapred.MapTask.run(MapTask.java:341)
+	at org.apache.hadoop.mapred.YarnChild$2.run(YarnChild.java:163)
+	at java.security.AccessController.doPrivileged(Native Method)
+	at javax.security.auth.Subject.doAs(Subject.java:422)
+	at org.apache.hadoop.security.UserGroupInformation.doAs(UserGroupInformation.java:1657)
+	at org.apache.hadoop.mapred.YarnChild.main(YarnChild.java:158)
+
+15/05/30 02:41:29 INFO mapreduce.Job: Task Id : attempt_1432724659305_0041_m_000001_1, Status : FAILED
+Error: java.lang.NumberFormatException: For input string: ""
+	at java.lang.NumberFormatException.forInputString(NumberFormatException.java:65)
+	at java.lang.Integer.parseInt(Integer.java:592)
+	at java.lang.Integer.parseInt(Integer.java:615)
+	at Node.<init>(Node.java:68)
+	at PEPMapper.map(PEPMapper.java:34)
+	at PEPMapper.map(PEPMapper.java:26)
+	at org.apache.hadoop.mapreduce.Mapper.run(Mapper.java:146)
+	at org.apache.hadoop.mapred.MapTask.runNewMapper(MapTask.java:787)
+	at org.apache.hadoop.mapred.MapTask.run(MapTask.java:341)
+	at org.apache.hadoop.mapred.YarnChild$2.run(YarnChild.java:163)
+	at java.security.AccessController.doPrivileged(Native Method)
+	at javax.security.auth.Subject.doAs(Subject.java:422)
+	at org.apache.hadoop.security.UserGroupInformation.doAs(UserGroupInformation.java:1657)
+	at org.apache.hadoop.mapred.YarnChild.main(YarnChild.java:158)
+
+15/05/30 02:41:30 INFO mapreduce.Job: Task Id : attempt_1432724659305_0041_m_000002_1, Status : FAILED
+Error: java.lang.NumberFormatException: For input string: ""
+	at java.lang.NumberFormatException.forInputString(NumberFormatException.java:65)
+	at java.lang.Integer.parseInt(Integer.java:592)
+	at java.lang.Integer.parseInt(Integer.java:615)
+	at Node.<init>(Node.java:68)
+	at PEPMapper.map(PEPMapper.java:34)
+	at PEPMapper.map(PEPMapper.java:26)
+	at org.apache.hadoop.mapreduce.Mapper.run(Mapper.java:146)
+	at org.apache.hadoop.mapred.MapTask.runNewMapper(MapTask.java:787)
+	at org.apache.hadoop.mapred.MapTask.run(MapTask.java:341)
+	at org.apache.hadoop.mapred.YarnChild$2.run(YarnChild.java:163)
+	at java.security.AccessController.doPrivileged(Native Method)
+	at javax.security.auth.Subject.doAs(Subject.java:422)
+	at org.apache.hadoop.security.UserGroupInformation.doAs(UserGroupInformation.java:1657)
+	at org.apache.hadoop.mapred.YarnChild.main(YarnChild.java:158)
+
+15/05/30 02:41:31 INFO mapreduce.Job:  map 0% reduce 0%
+15/05/30 02:41:32 INFO mapreduce.Job: Task Id : attempt_1432724659305_0041_m_000007_2, Status : FAILED
+Error: java.lang.NumberFormatException: For input string: ""
+	at java.lang.NumberFormatException.forInputString(NumberFormatException.java:65)
+	at java.lang.Integer.parseInt(Integer.java:592)
+	at java.lang.Integer.parseInt(Integer.java:615)
+	at Node.<init>(Node.java:68)
+	at PEPMapper.map(PEPMapper.java:34)
+	at PEPMapper.map(PEPMapper.java:26)
+	at org.apache.hadoop.mapreduce.Mapper.run(Mapper.java:146)
+	at org.apache.hadoop.mapred.MapTask.runNewMapper(MapTask.java:787)
+	at org.apache.hadoop.mapred.MapTask.run(MapTask.java:341)
+	at org.apache.hadoop.mapred.YarnChild$2.run(YarnChild.java:163)
+	at java.security.AccessController.doPrivileged(Native Method)
+	at javax.security.auth.Subject.doAs(Subject.java:422)
+	at org.apache.hadoop.security.UserGroupInformation.doAs(UserGroupInformation.java:1657)
+	at org.apache.hadoop.mapred.YarnChild.main(YarnChild.java:158)
+
+15/05/30 02:41:32 INFO mapreduce.Job: Task Id : attempt_1432724659305_0041_m_000003_1, Status : FAILED
+Error: java.lang.NumberFormatException: For input string: ""
+	at java.lang.NumberFormatException.forInputString(NumberFormatException.java:65)
+	at java.lang.Integer.parseInt(Integer.java:592)
+	at java.lang.Integer.parseInt(Integer.java:615)
+	at Node.<init>(Node.java:68)
+	at PEPMapper.map(PEPMapper.java:34)
+	at PEPMapper.map(PEPMapper.java:26)
+	at org.apache.hadoop.mapreduce.Mapper.run(Mapper.java:146)
+	at org.apache.hadoop.mapred.MapTask.runNewMapper(MapTask.java:787)
+	at org.apache.hadoop.mapred.MapTask.run(MapTask.java:341)
+	at org.apache.hadoop.mapred.YarnChild$2.run(YarnChild.java:163)
+	at java.security.AccessController.doPrivileged(Native Method)
+	at javax.security.auth.Subject.doAs(Subject.java:422)
+	at org.apache.hadoop.security.UserGroupInformation.doAs(UserGroupInformation.java:1657)
+	at org.apache.hadoop.mapred.YarnChild.main(YarnChild.java:158)
+
+15/05/30 02:41:32 INFO mapreduce.Job: Task Id : attempt_1432724659305_0041_m_000005_1, Status : FAILED
+Error: java.lang.NumberFormatException: For input string: ""
+	at java.lang.NumberFormatException.forInputString(NumberFormatException.java:65)
+	at java.lang.Integer.parseInt(Integer.java:592)
+	at java.lang.Integer.parseInt(Integer.java:615)
+	at Node.<init>(Node.java:68)
+	at PEPMapper.map(PEPMapper.java:34)
+	at PEPMapper.map(PEPMapper.java:26)
+	at org.apache.hadoop.mapreduce.Mapper.run(Mapper.java:146)
+	at org.apache.hadoop.mapred.MapTask.runNewMapper(MapTask.java:787)
+	at org.apache.hadoop.mapred.MapTask.run(MapTask.java:341)
+	at org.apache.hadoop.mapred.YarnChild$2.run(YarnChild.java:163)
+	at java.security.AccessController.doPrivileged(Native Method)
+	at javax.security.auth.Subject.doAs(Subject.java:422)
+	at org.apache.hadoop.security.UserGroupInformation.doAs(UserGroupInformation.java:1657)
+	at org.apache.hadoop.mapred.YarnChild.main(YarnChild.java:158)
+
+15/05/30 02:41:32 INFO mapreduce.Job: Task Id : attempt_1432724659305_0041_m_000004_2, Status : FAILED
+Error: java.lang.NumberFormatException: For input string: ""
+	at java.lang.NumberFormatException.forInputString(NumberFormatException.java:65)
+	at java.lang.Integer.parseInt(Integer.java:592)
+	at java.lang.Integer.parseInt(Integer.java:615)
+	at Node.<init>(Node.java:68)
+	at PEPMapper.map(PEPMapper.java:34)
+	at PEPMapper.map(PEPMapper.java:26)
+	at org.apache.hadoop.mapreduce.Mapper.run(Mapper.java:146)
+	at org.apache.hadoop.mapred.MapTask.runNewMapper(MapTask.java:787)
+	at org.apache.hadoop.mapred.MapTask.run(MapTask.java:341)
+	at org.apache.hadoop.mapred.YarnChild$2.run(YarnChild.java:163)
+	at java.security.AccessController.doPrivileged(Native Method)
+	at javax.security.auth.Subject.doAs(Subject.java:422)
+	at org.apache.hadoop.security.UserGroupInformation.doAs(UserGroupInformation.java:1657)
+	at org.apache.hadoop.mapred.YarnChild.main(YarnChild.java:158)
+
+15/05/30 02:41:32 INFO mapreduce.Job: Task Id : attempt_1432724659305_0041_m_000008_2, Status : FAILED
+Error: java.lang.NumberFormatException: For input string: ""
+	at java.lang.NumberFormatException.forInputString(NumberFormatException.java:65)
+	at java.lang.Integer.parseInt(Integer.java:592)
+	at java.lang.Integer.parseInt(Integer.java:615)
+	at Node.<init>(Node.java:68)
+	at PEPMapper.map(PEPMapper.java:34)
+	at PEPMapper.map(PEPMapper.java:26)
+	at org.apache.hadoop.mapreduce.Mapper.run(Mapper.java:146)
+	at org.apache.hadoop.mapred.MapTask.runNewMapper(MapTask.java:787)
+	at org.apache.hadoop.mapred.MapTask.run(MapTask.java:341)
+	at org.apache.hadoop.mapred.YarnChild$2.run(YarnChild.java:163)
+	at java.security.AccessController.doPrivileged(Native Method)
+	at javax.security.auth.Subject.doAs(Subject.java:422)
+	at org.apache.hadoop.security.UserGroupInformation.doAs(UserGroupInformation.java:1657)
+	at org.apache.hadoop.mapred.YarnChild.main(YarnChild.java:158)
+
+15/05/30 02:41:38 INFO mapreduce.Job:  map 100% reduce 100%
+15/05/30 02:41:39 INFO mapreduce.Job: Job job_1432724659305_0041 failed with state FAILED due to: Task failed task_1432724659305_0041_m_000004
+Job failed as tasks failed. failedMaps:1 failedReduces:0
+
+15/05/30 02:41:39 INFO mapreduce.Job: Counters: 14
+	Job Counters 
+		Failed map tasks=22
+		Killed map tasks=8
+		Launched map tasks=30
+		Other local map tasks=21
+		Data-local map tasks=7
+		Rack-local map tasks=2
+		Total time spent by all maps in occupied slots (ms)=243581
+		Total time spent by all reduces in occupied slots (ms)=0
+		Total time spent by all map tasks (ms)=243581
+		Total vcore-seconds taken by all map tasks=243581
+		Total megabyte-seconds taken by all map tasks=249426944
+	Map-Reduce Framework
+		CPU time spent (ms)=0
+		Physical memory (bytes) snapshot=0
+		Virtual memory (bytes) snapshot=0
+=====================================================================
+Job Running Time = 42373289828
+Counter 0
+=====================================================================
+=====================================================================
+Total Running Time 0 hours,0 Minutes,42 seconds
+=====================================================================
+15/05/30 02:56:16 INFO client.RMProxy: Connecting to ResourceManager at /192.168.1.241:8050
+15/05/30 02:56:17 WARN mapreduce.JobResourceUploader: Hadoop command-line option parsing not performed. Implement the Tool interface and execute your application with ToolRunner to remedy this.
+15/05/30 02:56:17 INFO input.FileInputFormat: Total input paths to process : 9
+15/05/30 02:56:17 INFO mapreduce.JobSubmitter: number of splits:9
+15/05/30 02:56:17 INFO mapreduce.JobSubmitter: Submitting tokens for job: job_1432724659305_0043
+15/05/30 02:56:18 INFO impl.YarnClientImpl: Submitted application application_1432724659305_0043
+15/05/30 02:56:18 INFO mapreduce.Job: The url to track the job: http://ubuntu01:8088/proxy/application_1432724659305_0043/
+15/05/30 02:56:18 INFO mapreduce.Job: Running job: job_1432724659305_0043
+15/05/30 02:56:24 INFO mapreduce.Job: Job job_1432724659305_0043 running in uber mode : false
+15/05/30 02:56:24 INFO mapreduce.Job:  map 0% reduce 0%
+15/05/30 02:56:44 INFO mapreduce.Job:  map 44% reduce 0%
+15/05/30 02:56:48 INFO mapreduce.Job:  map 89% reduce 0%
+15/05/30 02:56:49 INFO mapreduce.Job:  map 100% reduce 0%
+15/05/30 02:56:54 INFO mapreduce.Job:  map 100% reduce 100%
+15/05/30 02:56:54 INFO mapreduce.Job: Job job_1432724659305_0043 completed successfully
+15/05/30 02:56:54 INFO mapreduce.Job: Counters: 52
+	File System Counters
+		FILE: Number of bytes read=25265092
+		FILE: Number of bytes written=51675067
+		FILE: Number of read operations=0
+		FILE: Number of large read operations=0
+		FILE: Number of write operations=0
+		HDFS: Number of bytes read=24966796
+		HDFS: Number of bytes written=24952753
+		HDFS: Number of read operations=30
+		HDFS: Number of large read operations=0
+		HDFS: Number of write operations=2
+	Job Counters 
+		Killed map tasks=1
+		Launched map tasks=10
+		Launched reduce tasks=1
+		Data-local map tasks=6
+		Rack-local map tasks=4
+		Total time spent by all maps in occupied slots (ms)=201385
+		Total time spent by all reduces in occupied slots (ms)=5158
+		Total time spent by all map tasks (ms)=201385
+		Total time spent by all reduce tasks (ms)=5158
+		Total vcore-seconds taken by all map tasks=201385
+		Total vcore-seconds taken by all reduce tasks=5158
+		Total megabyte-seconds taken by all map tasks=206218240
+		Total megabyte-seconds taken by all reduce tasks=5281792
+	Map-Reduce Framework
+		Map input records=81306
+		Map output records=82257
+		Map output bytes=25041366
+		Map output materialized bytes=25265140
+		Input split bytes=1170
+		Combine input records=0
+		Combine output records=0
+		Reduce input groups=81306
+		Reduce shuffle bytes=25265140
+		Reduce input records=82257
+		Reduce output records=81306
+		Spilled Records=164514
+		Shuffled Maps =9
+		Failed Shuffles=0
+		Merged Map outputs=9
+		GC time elapsed (ms)=3687
+		CPU time spent (ms)=20940
+		Physical memory (bytes) snapshot=2481385472
+		Virtual memory (bytes) snapshot=18958028800
+		Total committed heap usage (bytes)=1887961088
+	MoreIterations
+		numberOfIterations=214
+	Shuffle Errors
+		BAD_ID=0
+		CONNECTION=0
+		IO_ERROR=0
+		WRONG_LENGTH=0
+		WRONG_MAP=0
+		WRONG_REDUCE=0
+	File Input Format Counters 
+		Bytes Read=24965626
+	File Output Format Counters 
+		Bytes Written=24952753
+=====================================================================
+Job Running Time = 38037054489
+Counter 214
+=====================================================================
+15/05/30 02:56:54 INFO client.RMProxy: Connecting to ResourceManager at /192.168.1.241:8050
+15/05/30 02:56:54 WARN mapreduce.JobResourceUploader: Hadoop command-line option parsing not performed. Implement the Tool interface and execute your application with ToolRunner to remedy this.
+15/05/30 02:56:54 INFO input.FileInputFormat: Total input paths to process : 1
+15/05/30 02:56:55 INFO mapreduce.JobSubmitter: number of splits:1
+15/05/30 02:56:55 INFO mapreduce.JobSubmitter: Submitting tokens for job: job_1432724659305_0044
+15/05/30 02:56:55 INFO impl.YarnClientImpl: Submitted application application_1432724659305_0044
+15/05/30 02:56:55 INFO mapreduce.Job: The url to track the job: http://ubuntu01:8088/proxy/application_1432724659305_0044/
+15/05/30 02:56:55 INFO mapreduce.Job: Running job: job_1432724659305_0044
+15/05/30 02:57:03 INFO mapreduce.Job: Job job_1432724659305_0044 running in uber mode : false
+15/05/30 02:57:03 INFO mapreduce.Job:  map 0% reduce 0%
+15/05/30 02:57:09 INFO mapreduce.Job:  map 100% reduce 0%
+15/05/30 02:57:17 INFO mapreduce.Job:  map 100% reduce 100%
+15/05/30 02:57:17 INFO mapreduce.Job: Job job_1432724659305_0044 completed successfully
+15/05/30 02:57:17 INFO mapreduce.Job: Counters: 50
+	File System Counters
+		FILE: Number of bytes read=27593593
+		FILE: Number of bytes written=55416157
+		FILE: Number of read operations=0
+		FILE: Number of large read operations=0
+		FILE: Number of write operations=0
+		HDFS: Number of bytes read=24952905
+		HDFS: Number of bytes written=23749949
+		HDFS: Number of read operations=6
+		HDFS: Number of large read operations=0
+		HDFS: Number of write operations=2
+	Job Counters 
+		Launched map tasks=1
+		Launched reduce tasks=1
+		Rack-local map tasks=1
+		Total time spent by all maps in occupied slots (ms)=4547
+		Total time spent by all reduces in occupied slots (ms)=5308
+		Total time spent by all map tasks (ms)=4547
+		Total time spent by all reduce tasks (ms)=5308
+		Total vcore-seconds taken by all map tasks=4547
+		Total vcore-seconds taken by all reduce tasks=5308
+		Total megabyte-seconds taken by all map tasks=4656128
+		Total megabyte-seconds taken by all reduce tasks=5435392
+	Map-Reduce Framework
+		Map input records=81306
+		Map output records=201543
+		Map output bytes=27131298
+		Map output materialized bytes=27593593
+		Input split bytes=152
+		Combine input records=0
+		Combine output records=0
+		Reduce input groups=81306
+		Reduce shuffle bytes=27593593
+		Reduce input records=201543
+		Reduce output records=81306
+		Spilled Records=403086
+		Shuffled Maps =1
+		Failed Shuffles=0
+		Merged Map outputs=1
+		GC time elapsed (ms)=281
+		CPU time spent (ms)=7370
+		Physical memory (bytes) snapshot=445960192
+		Virtual memory (bytes) snapshot=3803987968
+		Total committed heap usage (bytes)=297271296
+	MoreIterations
+		numberOfIterations=2675
+	Shuffle Errors
+		BAD_ID=0
+		CONNECTION=0
+		IO_ERROR=0
+		WRONG_LENGTH=0
+		WRONG_MAP=0
+		WRONG_REDUCE=0
+	File Input Format Counters 
+		Bytes Read=24952753
+	File Output Format Counters 
+		Bytes Written=23749949
+=====================================================================
+Job Running Time = 23101936977
+Counter 2675
+=====================================================================
+15/05/30 02:57:17 INFO client.RMProxy: Connecting to ResourceManager at /192.168.1.241:8050
+15/05/30 02:57:17 WARN mapreduce.JobResourceUploader: Hadoop command-line option parsing not performed. Implement the Tool interface and execute your application with ToolRunner to remedy this.
+15/05/30 02:57:18 INFO input.FileInputFormat: Total input paths to process : 1
+15/05/30 02:57:18 INFO mapreduce.JobSubmitter: number of splits:1
+15/05/30 02:57:18 INFO mapreduce.JobSubmitter: Submitting tokens for job: job_1432724659305_0045
+15/05/30 02:57:18 INFO impl.YarnClientImpl: Submitted application application_1432724659305_0045
+15/05/30 02:57:18 INFO mapreduce.Job: The url to track the job: http://ubuntu01:8088/proxy/application_1432724659305_0045/
+15/05/30 02:57:18 INFO mapreduce.Job: Running job: job_1432724659305_0045
+15/05/30 02:57:31 INFO mapreduce.Job: Job job_1432724659305_0045 running in uber mode : false
+15/05/30 02:57:31 INFO mapreduce.Job:  map 0% reduce 0%
+15/05/30 02:57:37 INFO mapreduce.Job:  map 100% reduce 0%
+15/05/30 02:57:45 INFO mapreduce.Job:  map 100% reduce 100%
+15/05/30 02:57:45 INFO mapreduce.Job: Job job_1432724659305_0045 completed successfully
+15/05/30 02:57:45 INFO mapreduce.Job: Counters: 50
+	File System Counters
+		FILE: Number of bytes read=28062161
+		FILE: Number of bytes written=56353295
+		FILE: Number of read operations=0
+		FILE: Number of large read operations=0
+		FILE: Number of write operations=0
+		HDFS: Number of bytes read=23750101
+		HDFS: Number of bytes written=21617306
+		HDFS: Number of read operations=6
+		HDFS: Number of large read operations=0
+		HDFS: Number of write operations=2
+	Job Counters 
+		Launched map tasks=1
+		Launched reduce tasks=1
+		Rack-local map tasks=1
+		Total time spent by all maps in occupied slots (ms)=4633
+		Total time spent by all reduces in occupied slots (ms)=5437
+		Total time spent by all map tasks (ms)=4633
+		Total time spent by all reduce tasks (ms)=5437
+		Total vcore-seconds taken by all map tasks=4633
+		Total vcore-seconds taken by all reduce tasks=5437
+		Total megabyte-seconds taken by all map tasks=4744192
+		Total megabyte-seconds taken by all reduce tasks=5567488
+	Map-Reduce Framework
+		Map input records=81306
+		Map output records=287123
+		Map output bytes=27429224
+		Map output materialized bytes=28062161
+		Input split bytes=152
+		Combine input records=0
+		Combine output records=0
+		Reduce input groups=81306
+		Reduce shuffle bytes=28062161
+		Reduce input records=287123
+		Reduce output records=81306
+		Spilled Records=574246
+		Shuffled Maps =1
+		Failed Shuffles=0
+		Merged Map outputs=1
+		GC time elapsed (ms)=260
+		CPU time spent (ms)=7180
+		Physical memory (bytes) snapshot=438427648
+		Virtual memory (bytes) snapshot=3794456576
+		Total committed heap usage (bytes)=294125568
+	MoreIterations
+		numberOfIterations=9625
+	Shuffle Errors
+		BAD_ID=0
+		CONNECTION=0
+		IO_ERROR=0
+		WRONG_LENGTH=0
+		WRONG_MAP=0
+		WRONG_REDUCE=0
+	File Input Format Counters 
+		Bytes Read=23749949
+	File Output Format Counters 
+		Bytes Written=21617306
+=====================================================================
+Job Running Time = 27868190831
+Counter 9625
+=====================================================================
+15/05/30 02:57:45 INFO client.RMProxy: Connecting to ResourceManager at /192.168.1.241:8050
+15/05/30 02:57:45 WARN mapreduce.JobResourceUploader: Hadoop command-line option parsing not performed. Implement the Tool interface and execute your application with ToolRunner to remedy this.
+15/05/30 02:57:45 INFO input.FileInputFormat: Total input paths to process : 1
+15/05/30 02:57:46 INFO mapreduce.JobSubmitter: number of splits:1
+15/05/30 02:57:46 INFO mapreduce.JobSubmitter: Submitting tokens for job: job_1432724659305_0046
+15/05/30 02:57:46 INFO impl.YarnClientImpl: Submitted application application_1432724659305_0046
+15/05/30 02:57:46 INFO mapreduce.Job: The url to track the job: http://ubuntu01:8088/proxy/application_1432724659305_0046/
+15/05/30 02:57:46 INFO mapreduce.Job: Running job: job_1432724659305_0046
+15/05/30 02:57:52 INFO mapreduce.Job: Job job_1432724659305_0046 running in uber mode : false
+15/05/30 02:57:52 INFO mapreduce.Job:  map 0% reduce 0%
+15/05/30 02:57:59 INFO mapreduce.Job:  map 100% reduce 0%
+15/05/30 02:58:07 INFO mapreduce.Job:  map 100% reduce 100%
+15/05/30 02:58:07 INFO mapreduce.Job: Job job_1432724659305_0046 completed successfully
+15/05/30 02:58:07 INFO mapreduce.Job: Counters: 50
+	File System Counters
+		FILE: Number of bytes read=28854812
+		FILE: Number of bytes written=57938597
+		FILE: Number of read operations=0
+		FILE: Number of large read operations=0
+		FILE: Number of write operations=0
+		HDFS: Number of bytes read=21617458
+		HDFS: Number of bytes written=17848539
+		HDFS: Number of read operations=6
+		HDFS: Number of large read operations=0
+		HDFS: Number of write operations=2
+	Job Counters 
+		Launched map tasks=1
+		Launched reduce tasks=1
+		Rack-local map tasks=1
+		Total time spent by all maps in occupied slots (ms)=4926
+		Total time spent by all reduces in occupied slots (ms)=5164
+		Total time spent by all map tasks (ms)=4926
+		Total time spent by all reduce tasks (ms)=5164
+		Total vcore-seconds taken by all map tasks=4926
+		Total vcore-seconds taken by all reduce tasks=5164
+		Total megabyte-seconds taken by all map tasks=5044224
+		Total megabyte-seconds taken by all reduce tasks=5287936
+	Map-Reduce Framework
+		Map input records=81306
+		Map output records=446362
+		Map output bytes=27907354
+		Map output materialized bytes=28854812
+		Input split bytes=152
+		Combine input records=0
+		Combine output records=0
+		Reduce input groups=81306
+		Reduce shuffle bytes=28854812
+		Reduce input records=446362
+		Reduce output records=81306
+		Spilled Records=892724
+		Shuffled Maps =1
+		Failed Shuffles=0
+		Merged Map outputs=1
+		GC time elapsed (ms)=244
+		CPU time spent (ms)=7670
+		Physical memory (bytes) snapshot=467365888
+		Virtual memory (bytes) snapshot=3798077440
+		Total committed heap usage (bytes)=320864256
+	MoreIterations
+		numberOfIterations=27815
+	Shuffle Errors
+		BAD_ID=0
+		CONNECTION=0
+		IO_ERROR=0
+		WRONG_LENGTH=0
+		WRONG_MAP=0
+		WRONG_REDUCE=0
+	File Input Format Counters 
+		Bytes Read=21617306
+	File Output Format Counters 
+		Bytes Written=17848539
+=====================================================================
+Job Running Time = 21842199890
+Counter 27815
+=====================================================================
+15/05/30 02:58:07 INFO client.RMProxy: Connecting to ResourceManager at /192.168.1.241:8050
+15/05/30 02:58:07 WARN mapreduce.JobResourceUploader: Hadoop command-line option parsing not performed. Implement the Tool interface and execute your application with ToolRunner to remedy this.
+15/05/30 02:58:07 INFO input.FileInputFormat: Total input paths to process : 1
+15/05/30 02:58:07 INFO mapreduce.JobSubmitter: number of splits:1
+15/05/30 02:58:08 INFO mapreduce.JobSubmitter: Submitting tokens for job: job_1432724659305_0047
+15/05/30 02:58:08 INFO impl.YarnClientImpl: Submitted application application_1432724659305_0047
+15/05/30 02:58:08 INFO mapreduce.Job: The url to track the job: http://ubuntu01:8088/proxy/application_1432724659305_0047/
+15/05/30 02:58:08 INFO mapreduce.Job: Running job: job_1432724659305_0047
+15/05/30 02:58:14 INFO mapreduce.Job: Job job_1432724659305_0047 running in uber mode : false
+15/05/30 02:58:14 INFO mapreduce.Job:  map 0% reduce 0%
+15/05/30 02:58:24 INFO mapreduce.Job:  map 100% reduce 0%
+15/05/30 02:58:32 INFO mapreduce.Job:  map 100% reduce 100%
+15/05/30 02:58:32 INFO mapreduce.Job: Job job_1432724659305_0047 completed successfully
+15/05/30 02:58:32 INFO mapreduce.Job: Counters: 50
+	File System Counters
+		FILE: Number of bytes read=40524544
+		FILE: Number of bytes written=81278063
+		FILE: Number of read operations=0
+		FILE: Number of large read operations=0
+		FILE: Number of write operations=0
+		HDFS: Number of bytes read=17848691
+		HDFS: Number of bytes written=6744967
+		HDFS: Number of read operations=6
+		HDFS: Number of large read operations=0
+		HDFS: Number of write operations=2
+	Job Counters 
+		Launched map tasks=1
+		Launched reduce tasks=1
+		Data-local map tasks=1
+		Total time spent by all maps in occupied slots (ms)=7107
+		Total time spent by all reduces in occupied slots (ms)=5605
+		Total time spent by all map tasks (ms)=7107
+		Total time spent by all reduce tasks (ms)=5605
+		Total vcore-seconds taken by all map tasks=7107
+		Total vcore-seconds taken by all reduce tasks=5605
+		Total megabyte-seconds taken by all map tasks=7277568
+		Total megabyte-seconds taken by all reduce tasks=5739520
+	Map-Reduce Framework
+		Map input records=81306
+		Map output records=1256895
+		Map output bytes=37965276
+		Map output materialized bytes=40524544
+		Input split bytes=152
+		Combine input records=0
+		Combine output records=0
+		Reduce input groups=81306
+		Reduce shuffle bytes=40524544
+		Reduce input records=1256895
+		Reduce output records=81306
+		Spilled Records=2513790
+		Shuffled Maps =1
+		Failed Shuffles=0
+		Merged Map outputs=1
+		GC time elapsed (ms)=288
+		CPU time spent (ms)=9830
+		Physical memory (bytes) snapshot=438603776
+		Virtual memory (bytes) snapshot=3801649152
+		Total committed heap usage (bytes)=297271296
+	MoreIterations
+		numberOfIterations=28964
+	Shuffle Errors
+		BAD_ID=0
+		CONNECTION=0
+		IO_ERROR=0
+		WRONG_LENGTH=0
+		WRONG_MAP=0
+		WRONG_REDUCE=0
+	File Input Format Counters 
+		Bytes Read=17848539
+	File Output Format Counters 
+		Bytes Written=6744967
+=====================================================================
+Job Running Time = 24668105792
+Counter 28964
+=====================================================================
+15/05/30 02:58:32 INFO client.RMProxy: Connecting to ResourceManager at /192.168.1.241:8050
+15/05/30 02:58:32 WARN mapreduce.JobResourceUploader: Hadoop command-line option parsing not performed. Implement the Tool interface and execute your application with ToolRunner to remedy this.
+15/05/30 02:58:32 INFO input.FileInputFormat: Total input paths to process : 1
+15/05/30 02:58:32 INFO mapreduce.JobSubmitter: number of splits:1
+15/05/30 02:58:32 INFO mapreduce.JobSubmitter: Submitting tokens for job: job_1432724659305_0048
+15/05/30 02:58:32 INFO impl.YarnClientImpl: Submitted application application_1432724659305_0048
+15/05/30 02:58:32 INFO mapreduce.Job: The url to track the job: http://ubuntu01:8088/proxy/application_1432724659305_0048/
+15/05/30 02:58:32 INFO mapreduce.Job: Running job: job_1432724659305_0048
+15/05/30 02:58:39 INFO mapreduce.Job: Job job_1432724659305_0048 running in uber mode : false
+15/05/30 02:58:39 INFO mapreduce.Job:  map 0% reduce 0%
+15/05/30 02:58:46 INFO mapreduce.Job:  map 100% reduce 0%
+15/05/30 02:58:53 INFO mapreduce.Job:  map 100% reduce 100%
+15/05/30 02:58:53 INFO mapreduce.Job: Job job_1432724659305_0048 completed successfully
+15/05/30 02:58:53 INFO mapreduce.Job: Counters: 50
+	File System Counters
+		FILE: Number of bytes read=15486327
+		FILE: Number of bytes written=31201629
+		FILE: Number of read operations=0
+		FILE: Number of large read operations=0
+		FILE: Number of write operations=0
+		HDFS: Number of bytes read=6745119
+		HDFS: Number of bytes written=2524189
+		HDFS: Number of read operations=6
+		HDFS: Number of large read operations=0
+		HDFS: Number of write operations=2
+	Job Counters 
+		Launched map tasks=1
+		Launched reduce tasks=1
+		Data-local map tasks=1
+		Total time spent by all maps in occupied slots (ms)=4745
+		Total time spent by all reduces in occupied slots (ms)=4843
+		Total time spent by all map tasks (ms)=4745
+		Total time spent by all reduce tasks (ms)=4843
+		Total vcore-seconds taken by all map tasks=4745
+		Total vcore-seconds taken by all reduce tasks=4843
+		Total megabyte-seconds taken by all map tasks=4858880
+		Total megabyte-seconds taken by all reduce tasks=4959232
+	Map-Reduce Framework
+		Map input records=81306
+		Map output records=525096
+		Map output bytes=14418678
+		Map output materialized bytes=15486327
+		Input split bytes=152
+		Combine input records=0
+		Combine output records=0
+		Reduce input groups=81306
+		Reduce shuffle bytes=15486327
+		Reduce input records=525096
+		Reduce output records=81306
+		Spilled Records=1050192
+		Shuffled Maps =1
+		Failed Shuffles=0
+		Merged Map outputs=1
+		GC time elapsed (ms)=211
+		CPU time spent (ms)=7320
+		Physical memory (bytes) snapshot=447606784
+		Virtual memory (bytes) snapshot=3809546240
+		Total committed heap usage (bytes)=289406976
+	MoreIterations
+		numberOfIterations=10155
+	Shuffle Errors
+		BAD_ID=0
+		CONNECTION=0
+		IO_ERROR=0
+		WRONG_LENGTH=0
+		WRONG_MAP=0
+		WRONG_REDUCE=0
+	File Input Format Counters 
+		Bytes Read=6744967
+	File Output Format Counters 
+		Bytes Written=2524189
+=====================================================================
+Job Running Time = 21535769565
+Counter 10155
+=====================================================================
+15/05/30 02:58:53 INFO client.RMProxy: Connecting to ResourceManager at /192.168.1.241:8050
+15/05/30 02:58:53 WARN mapreduce.JobResourceUploader: Hadoop command-line option parsing not performed. Implement the Tool interface and execute your application with ToolRunner to remedy this.
+15/05/30 02:58:54 INFO input.FileInputFormat: Total input paths to process : 1
+15/05/30 02:58:54 INFO mapreduce.JobSubmitter: number of splits:1
+15/05/30 02:58:54 INFO mapreduce.JobSubmitter: Submitting tokens for job: job_1432724659305_0049
+15/05/30 02:58:54 INFO impl.YarnClientImpl: Submitted application application_1432724659305_0049
+15/05/30 02:58:54 INFO mapreduce.Job: The url to track the job: http://ubuntu01:8088/proxy/application_1432724659305_0049/
+15/05/30 02:58:54 INFO mapreduce.Job: Running job: job_1432724659305_0049
+15/05/30 02:59:00 INFO mapreduce.Job: Job job_1432724659305_0049 running in uber mode : false
+15/05/30 02:59:00 INFO mapreduce.Job:  map 0% reduce 0%
+15/05/30 02:59:06 INFO mapreduce.Job:  map 100% reduce 0%
+15/05/30 02:59:13 INFO mapreduce.Job:  map 100% reduce 100%
+15/05/30 02:59:13 INFO mapreduce.Job: Job job_1432724659305_0049 completed successfully
+15/05/30 02:59:13 INFO mapreduce.Job: Counters: 50
+	File System Counters
+		FILE: Number of bytes read=4500518
+		FILE: Number of bytes written=9230011
+		FILE: Number of read operations=0
+		FILE: Number of large read operations=0
+		FILE: Number of write operations=0
+		HDFS: Number of bytes read=2524341
+		HDFS: Number of bytes written=1639067
+		HDFS: Number of read operations=6
+		HDFS: Number of large read operations=0
+		HDFS: Number of write operations=2
+	Job Counters 
+		Launched map tasks=1
+		Launched reduce tasks=1
+		Rack-local map tasks=1
+		Total time spent by all maps in occupied slots (ms)=4566
+		Total time spent by all reduces in occupied slots (ms)=4126
+		Total time spent by all map tasks (ms)=4566
+		Total time spent by all reduce tasks (ms)=4126
+		Total vcore-seconds taken by all map tasks=4566
+		Total vcore-seconds taken by all reduce tasks=4126
+		Total megabyte-seconds taken by all map tasks=4675584
+		Total megabyte-seconds taken by all reduce tasks=4225024
+	Map-Reduce Framework
+		Map input records=81306
+		Map output records=174430
+		Map output bytes=4148106
+		Map output materialized bytes=4500518
+		Input split bytes=152
+		Combine input records=0
+		Combine output records=0
+		Reduce input groups=81306
+		Reduce shuffle bytes=4500518
+		Reduce input records=174430
+		Reduce output records=81306
+		Spilled Records=348860
+		Shuffled Maps =1
+		Failed Shuffles=0
+		Merged Map outputs=1
+		GC time elapsed (ms)=226
+		CPU time spent (ms)=6580
+		Physical memory (bytes) snapshot=455852032
+		Virtual memory (bytes) snapshot=3800018944
+		Total committed heap usage (bytes)=294125568
+	MoreIterations
+		numberOfIterations=1766
+	Shuffle Errors
+		BAD_ID=0
+		CONNECTION=0
+		IO_ERROR=0
+		WRONG_LENGTH=0
+		WRONG_MAP=0
+		WRONG_REDUCE=0
+	File Input Format Counters 
+		Bytes Read=2524189
+	File Output Format Counters 
+		Bytes Written=1639067
+=====================================================================
+Job Running Time = 19642420064
+Counter 1766
+=====================================================================
+15/05/30 02:59:13 INFO client.RMProxy: Connecting to ResourceManager at /192.168.1.241:8050
+15/05/30 02:59:13 WARN mapreduce.JobResourceUploader: Hadoop command-line option parsing not performed. Implement the Tool interface and execute your application with ToolRunner to remedy this.
+15/05/30 02:59:13 INFO input.FileInputFormat: Total input paths to process : 1
+15/05/30 02:59:13 INFO mapreduce.JobSubmitter: number of splits:1
+15/05/30 02:59:13 INFO mapreduce.JobSubmitter: Submitting tokens for job: job_1432724659305_0050
+15/05/30 02:59:13 INFO impl.YarnClientImpl: Submitted application application_1432724659305_0050
+15/05/30 02:59:13 INFO mapreduce.Job: The url to track the job: http://ubuntu01:8088/proxy/application_1432724659305_0050/
+15/05/30 02:59:13 INFO mapreduce.Job: Running job: job_1432724659305_0050
+15/05/30 02:59:21 INFO mapreduce.Job: Job job_1432724659305_0050 running in uber mode : false
+15/05/30 02:59:21 INFO mapreduce.Job:  map 0% reduce 0%
+15/05/30 02:59:27 INFO mapreduce.Job:  map 100% reduce 0%
+15/05/30 02:59:33 INFO mapreduce.Job:  map 100% reduce 100%
+15/05/30 02:59:34 INFO mapreduce.Job: Job job_1432724659305_0050 completed successfully
+15/05/30 02:59:34 INFO mapreduce.Job: Counters: 50
+	File System Counters
+		FILE: Number of bytes read=2111538
+		FILE: Number of bytes written=4452049
+		FILE: Number of read operations=0
+		FILE: Number of large read operations=0
+		FILE: Number of write operations=0
+		HDFS: Number of bytes read=1639219
+		HDFS: Number of bytes written=1490514
+		HDFS: Number of read operations=6
+		HDFS: Number of large read operations=0
+		HDFS: Number of write operations=2
+	Job Counters 
+		Launched map tasks=1
+		Launched reduce tasks=1
+		Rack-local map tasks=1
+		Total time spent by all maps in occupied slots (ms)=3928
+		Total time spent by all reduces in occupied slots (ms)=3823
+		Total time spent by all map tasks (ms)=3928
+		Total time spent by all reduce tasks (ms)=3823
+		Total vcore-seconds taken by all map tasks=3928
+		Total vcore-seconds taken by all reduce tasks=3823
+		Total megabyte-seconds taken by all map tasks=4022272
+		Total megabyte-seconds taken by all reduce tasks=3914752
+	Map-Reduce Framework
+		Map input records=81306
+		Map output records=97124
+		Map output bytes=1916731
+		Map output materialized bytes=2111538
+		Input split bytes=152
+		Combine input records=0
+		Combine output records=0
+		Reduce input groups=81306
+		Reduce shuffle bytes=2111538
+		Reduce input records=97124
+		Reduce output records=81306
+		Spilled Records=194248
+		Shuffled Maps =1
+		Failed Shuffles=0
+		Merged Map outputs=1
+		GC time elapsed (ms)=163
+		CPU time spent (ms)=5150
+		Physical memory (bytes) snapshot=456855552
+		Virtual memory (bytes) snapshot=3803951104
+		Total committed heap usage (bytes)=285212672
+	MoreIterations
+		numberOfIterations=89
+	Shuffle Errors
+		BAD_ID=0
+		CONNECTION=0
+		IO_ERROR=0
+		WRONG_LENGTH=0
+		WRONG_MAP=0
+		WRONG_REDUCE=0
+	File Input Format Counters 
+		Bytes Read=1639067
+	File Output Format Counters 
+		Bytes Written=1490514
+=====================================================================
+Job Running Time = 20703567040
+Counter 89
+=====================================================================
+15/05/30 02:59:34 INFO client.RMProxy: Connecting to ResourceManager at /192.168.1.241:8050
+15/05/30 02:59:34 WARN mapreduce.JobResourceUploader: Hadoop command-line option parsing not performed. Implement the Tool interface and execute your application with ToolRunner to remedy this.
+15/05/30 02:59:34 INFO input.FileInputFormat: Total input paths to process : 1
+15/05/30 02:59:34 INFO mapreduce.JobSubmitter: number of splits:1
+15/05/30 02:59:34 INFO mapreduce.JobSubmitter: Submitting tokens for job: job_1432724659305_0051
+15/05/30 02:59:34 INFO impl.YarnClientImpl: Submitted application application_1432724659305_0051
+15/05/30 02:59:34 INFO mapreduce.Job: The url to track the job: http://ubuntu01:8088/proxy/application_1432724659305_0051/
+15/05/30 02:59:34 INFO mapreduce.Job: Running job: job_1432724659305_0051
+15/05/30 02:59:40 INFO mapreduce.Job: Job job_1432724659305_0051 running in uber mode : false
+15/05/30 02:59:40 INFO mapreduce.Job:  map 0% reduce 0%
+15/05/30 02:59:46 INFO mapreduce.Job:  map 100% reduce 0%
+15/05/30 02:59:52 INFO mapreduce.Job:  map 100% reduce 100%
+15/05/30 02:59:53 INFO mapreduce.Job: Job job_1432724659305_0051 completed successfully
+15/05/30 02:59:53 INFO mapreduce.Job: Counters: 49
+	File System Counters
+		FILE: Number of bytes read=1658700
+		FILE: Number of bytes written=3546369
+		FILE: Number of read operations=0
+		FILE: Number of large read operations=0
+		FILE: Number of write operations=0
+		HDFS: Number of bytes read=1490666
+		HDFS: Number of bytes written=1487946
+		HDFS: Number of read operations=6
+		HDFS: Number of large read operations=0
+		HDFS: Number of write operations=2
+	Job Counters 
+		Launched map tasks=1
+		Launched reduce tasks=1
+		Rack-local map tasks=1
+		Total time spent by all maps in occupied slots (ms)=4129
+		Total time spent by all reduces in occupied slots (ms)=3837
+		Total time spent by all map tasks (ms)=4129
+		Total time spent by all reduce tasks (ms)=3837
+		Total vcore-seconds taken by all map tasks=4129
+		Total vcore-seconds taken by all reduce tasks=3837
+		Total megabyte-seconds taken by all map tasks=4228096
+		Total megabyte-seconds taken by all reduce tasks=3929088
+	Map-Reduce Framework
+		Map input records=81306
+		Map output records=81587
+		Map output bytes=1495514
+		Map output materialized bytes=1658700
+		Input split bytes=152
+		Combine input records=0
+		Combine output records=0
+		Reduce input groups=81306
+		Reduce shuffle bytes=1658700
+		Reduce input records=81587
+		Reduce output records=81306
+		Spilled Records=163174
+		Shuffled Maps =1
+		Failed Shuffles=0
+		Merged Map outputs=1
+		GC time elapsed (ms)=140
+		CPU time spent (ms)=5400
+		Physical memory (bytes) snapshot=458121216
+		Virtual memory (bytes) snapshot=3816525824
+		Total committed heap usage (bytes)=284688384
+	Shuffle Errors
+		BAD_ID=0
+		CONNECTION=0
+		IO_ERROR=0
+		WRONG_LENGTH=0
+		WRONG_MAP=0
+		WRONG_REDUCE=0
+	File Input Format Counters 
+		Bytes Read=1490514
+	File Output Format Counters 
+		Bytes Written=1487946
+=====================================================================
+Job Running Time = 19639074230
+Counter 0
+=====================================================================
+=====================================================================
+Total Running Time 0 hours,3 Minutes,37 seconds
+=====================================================================
