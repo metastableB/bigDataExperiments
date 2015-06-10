@@ -84,74 +84,76 @@ public class SSSP_UW_Job extends Configured implements Tool {
             iterationCount++;
 	   }
         // SECOND JOB Here
-        String pathPrinterJobName = new String(args[2]+ "_pathPrinter");
-        String source = args[4];
-	    List <String> path = new ArrayList<String>();	
-        path.add(0,source);
-        long rootReached = 0;
-        long loopCount = 0;
-        boolean noPath = false;
-       
-        while(rootReached == 0 ){
-            Configuration conf2 = new Configuration();
-            conf2.set("source", source);		
-            Job pathPrinterJob = new Job(conf2);
-            pathPrinterJob.setJarByClass(getClass());
-            pathPrinterJob.setJobName(pathPrinterJobName);          
-            
-            input = args[1]+"/run" + String.valueOf(iterationCount-1);
-            output = args[1]+"/temp/run" + String.valueOf(loopCount);
-        
-            FileInputFormat.setInputPaths(pathPrinterJob, new Path(input));
-            FileOutputFormat.setOutputPath(pathPrinterJob, new Path(output));
-            
-            pathPrinterJob.setMapperClass(SSSP_UW_PathMapper.class);
-            //pathPrinterJob.setCombinerClass(Combiner.class);
-            pathPrinterJob.setReducerClass(SSSP_UW_PathReducer.class);
-            // DONOT MODIFY
-            pathPrinterJob.setNumReduceTasks(1);
-
-            pathPrinterJob.setOutputKeyClass(Text.class);
-            pathPrinterJob.setOutputValueClass(Text.class);
-         
-            startTime = System.nanoTime();
-            pathPrinterJob.waitForCompletion(true); 
-            endTime = System.nanoTime();
-            runningTime = endTime - startTime;
-            totalRunningTime += runningTime;
-
-            System.out.println("=====================================================================");
-            System.out.println ("Job Running Time = " + runningTime);
-            rootReached =  pathPrinterJob.getCounters().findCounter(MoreIterations.numberOfIterations).getValue();
-            System.out.println("Counter "  + rootReached);
-            System.out.println("=====================================================================");
-            loopCount++;
-
-            // Getting new source
-            Path pt = new Path(output + "/part-r-00000");
-            FileSystem fs = FileSystem.get(new Configuration());
-            BufferedReader br=new BufferedReader(new InputStreamReader(fs.open(pt)));
-            String line;
-            noPath = true;
-            while ((line = br.readLine()) != null) {
-                noPath = false;
-                source = line.trim();
-            }
-            if(source.equals("source"))
-                rootReached = 1;
-            if(noPath) {
-                noPath = true;
-                break;
-            }
-            //System.out.println("Source and eval "+source +" 1" + source.equals("null") +" 2"+ (source == null));
+        if(args.length == 5) {       
+            String pathPrinterJobName = new String(args[2]+ "_pathPrinter");
+            String source = args[4];
+    	    List <String> path = new ArrayList<String>();	
             path.add(0,source);
+            long rootReached = 0;
+            long loopCount = 0;
+            boolean noPath = false;
+           
+            while(rootReached == 0 ){
+                Configuration conf2 = new Configuration();
+                conf2.set("source", source);		
+                Job pathPrinterJob = new Job(conf2);
+                pathPrinterJob.setJarByClass(getClass());
+                pathPrinterJob.setJobName(pathPrinterJobName);          
+                
+                input = args[1]+"/run" + String.valueOf(iterationCount-1);
+                output = args[1]+"/temp/run" + String.valueOf(loopCount);
+            
+                FileInputFormat.setInputPaths(pathPrinterJob, new Path(input));
+                FileOutputFormat.setOutputPath(pathPrinterJob, new Path(output));
+                
+                pathPrinterJob.setMapperClass(SSSP_UW_PathMapper.class);
+                //pathPrinterJob.setCombinerClass(Combiner.class);
+                pathPrinterJob.setReducerClass(SSSP_UW_PathReducer.class);
+                // DONOT MODIFY
+                pathPrinterJob.setNumReduceTasks(1);
 
+                pathPrinterJob.setOutputKeyClass(Text.class);
+                pathPrinterJob.setOutputValueClass(Text.class);
+             
+                startTime = System.nanoTime();
+                pathPrinterJob.waitForCompletion(true); 
+                endTime = System.nanoTime();
+                runningTime = endTime - startTime;
+                totalRunningTime += runningTime;
+
+                System.out.println("=====================================================================");
+                System.out.println ("Job Running Time = " + runningTime);
+                rootReached =  pathPrinterJob.getCounters().findCounter(MoreIterations.numberOfIterations).getValue();
+                System.out.println("Counter "  + rootReached);
+                System.out.println("=====================================================================");
+                loopCount++;
+
+                // Getting new source
+                Path pt = new Path(output + "/part-r-00000");
+                FileSystem fs = FileSystem.get(new Configuration());
+                BufferedReader br=new BufferedReader(new InputStreamReader(fs.open(pt)));
+                String line;
+                noPath = true;
+                while ((line = br.readLine()) != null) {
+                    noPath = false;
+                    source = line.trim();
+                }
+                if(source.equals("source"))
+                    rootReached = 1;
+                if(noPath) {
+                    noPath = true;
+                    break;
+                }
+                //System.out.println("Source and eval "+source +" 1" + source.equals("null") +" 2"+ (source == null));
+                path.add(0,source);
+            }
+              
+            System.out.println("Removing temporary files");
+            FileSystem del = FileSystem.get(getConf());
+            del.delete(new Path(args[1]+"/temp"), true); 
+            System.out.println("Writing Path to file");
+            writePath(args[1]+"/path.txt", path ,noPath);        
         }
-        System.out.println("Removing temporary files");
-        FileSystem del = FileSystem.get(getConf());
-        del.delete(new Path(args[1]+"/temp"), true); 
-        System.out.println("Writing Path to file");
-        writePath(args[1]+"/path.txt", path ,noPath);        
         System.out.println("=====================================================================");
         System.out.println("Total Running Time "+ getRunningTime(totalRunningTime));
         System.out.println("=====================================================================");
@@ -162,8 +164,8 @@ public class SSSP_UW_Job extends Configured implements Tool {
 
     public static void main(String[] args) throws Exception {
 
-        if(args.length != 5){
-            System.err.println("Usage: <in> <output name> <jobName> <source> <destination>");
+        if(args.length != 5 && args.length != 4){
+            System.err.println("Usage: <in> <output name> <jobName> <source> [<destination>]");
             System.exit(1);
         }
         int res = ToolRunner.run(new SSSP_UW_Job(), args);
