@@ -90,6 +90,7 @@ public class SSSP_UW_Job extends Configured implements Tool {
         path.add(0,source);
         long rootReached = 0;
         long loopCount = 0;
+        boolean noPath = false;
        
         while(rootReached == 0 ){
             Configuration conf2 = new Configuration();
@@ -131,11 +132,18 @@ public class SSSP_UW_Job extends Configured implements Tool {
             FileSystem fs = FileSystem.get(new Configuration());
             BufferedReader br=new BufferedReader(new InputStreamReader(fs.open(pt)));
             String line;
-
-            while ((line = br.readLine()) != null)
+            noPath = true;
+            while ((line = br.readLine()) != null) {
+                noPath = false;
                 source = line.trim();
+            }
             if(source.equals("source"))
                 rootReached = 1;
+            if(noPath) {
+                noPath = true;
+                break;
+            }
+            //System.out.println("Source and eval "+source +" 1" + source.equals("null") +" 2"+ (source == null));
             path.add(0,source);
 
         }
@@ -143,7 +151,7 @@ public class SSSP_UW_Job extends Configured implements Tool {
         FileSystem del = FileSystem.get(getConf());
         del.delete(new Path(args[1]+"/temp"), true); 
         System.out.println("Writing Path to file");
-        writePath(args[1]+"/path.txt", path);        
+        writePath(args[1]+"/path.txt", path ,noPath);        
         System.out.println("=====================================================================");
         System.out.println("Total Running Time "+ getRunningTime(totalRunningTime));
         System.out.println("=====================================================================");
@@ -172,7 +180,7 @@ public class SSSP_UW_Job extends Configured implements Tool {
         return Long.toString(hours) + " hours," + Long.toString(minutes) +" Minutes," + Long.toString(seconds) + " seconds" ;
     }
 
-    public static  void  writePath(String pathToFile, List<String> path) {
+    public static  void  writePath(String pathToFile, List<String> path, boolean noPath) {
         Configuration config = new Configuration(); 
         config.addResource(new Path("/HADOOP_HOME/conf/core-site.xml"));
         config.addResource(new Path("/HADOOP_HOME/conf/hdfs-site.xml"));    
@@ -183,13 +191,16 @@ public class SSSP_UW_Job extends Configured implements Tool {
                 fs.delete(filenamePath, true);
     
             FSDataOutputStream fin = fs.create(filenamePath);
-
-            int size = path.size();
-            for(String s : path) {
-                fin.writeUTF(s);
-                size--;
-                if(size != 0)
-                    fin.writeUTF(" --> ");  
+            if(noPath)
+                fin.writeUTF("NO PATH");
+            else {
+                int size = path.size();
+                for(String s : path) {
+                    fin.writeUTF(s);
+                    size--;
+                    if(size != 0)
+                        fin.writeUTF(" --> ");  
+                }
             }
             fin.close();
         } catch(Exception e){
