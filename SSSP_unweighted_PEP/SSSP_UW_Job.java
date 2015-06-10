@@ -14,7 +14,11 @@
  *
  * (c) IIIT Delhi, 2015
  */
-
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.List;
+import java.util.ArrayList;
 import org.apache.hadoop.conf.Configuration;
 import org.apache.hadoop.conf.Configured;
 import org.apache.hadoop.mapreduce.Job;
@@ -28,6 +32,9 @@ import org.apache.hadoop.mapreduce.Counters;
 import org.apache.hadoop.mapreduce.lib.input.FileInputFormat;
 import org.apache.hadoop.mapreduce.lib.output.FileOutputFormat;
 import org.apache.hadoop.fs.Path;
+import org.apache.hadoop.fs.FileSystem;
+import org.apache.hadoop.fs.FSDataOutputStream;
+
 
 public class SSSP_UW_Job extends Configured implements Tool {
 	@Override
@@ -35,6 +42,7 @@ public class SSSP_UW_Job extends Configured implements Tool {
         long runningTime, startTime, endTime, totalRunningTime = 0;
         long noOfGray = 1;
         long iterationCount = 0;
+        String input, output;
         String PEPJobName = new String(args[2]+ "_PEP_0");
         Configuration conf = new Configuration();
 		conf.set("source", args[3]);
@@ -44,8 +52,7 @@ public class SSSP_UW_Job extends Configured implements Tool {
 	        Job PEPJob = new Job(conf);
 	        PEPJob.setJarByClass(getClass());
 	        PEPJob.setJobName(PEPJobName);
-	        String input, output;
-            if(iterationCount == 0){
+	        if(iterationCount == 0){
 	           input = args[0];
 	           output = args[1]+"/run" + String.valueOf(iterationCount);
             } else {
@@ -76,37 +83,71 @@ public class SSSP_UW_Job extends Configured implements Tool {
 	        System.out.println("=====================================================================");
             iterationCount++;
 	   }
-        /* SECOND JOB Here
-        String edgeCreatorJobName = new String(args[2]+ "_edgeCreator");
-        Configuration conf = new Configuration();
-		conf.set("end", args[3]);
-		conf.set("probability",args[4]);
-		
-        Job edgeCreatorJob = new Job(conf);
-        edgeCreatorJob.setJarByClass(getClass());
-        edgeCreatorJob.setJobName(edgeCreatorJobName);
+        // SECOND JOB Here
+        String pathPrinterJobName = new String(args[2]+ "_pathPrinter");
+        String source = args[4];
+	    List <String> path = new ArrayList<String>();	
+        path.add(0,source);
+        long rootReached = 0;
+        long loopCount = 0;
+       
+        while(rootReached == 0 ){
+            Configuration conf2 = new Configuration();
+            conf2.set("source", source);		
+            Job pathPrinterJob = new Job(conf2);
+            pathPrinterJob.setJarByClass(getClass());
+            pathPrinterJob.setJobName(pathPrinterJobName);          
+            
+            input = args[1]+"/run" + String.valueOf(iterationCount-1);
+            output = args[1]+"/temp/run" + String.valueOf(loopCount);
         
-        input = args[1]+"/nodes/";
-        output = args[1]+"/edges/";
-        FileInputFormat.setInputPaths(edgeCreatorJob, new Path(input));
-        FileOutputFormat.setOutputPath(edgeCreatorJob, new Path(output));
-        
-        edgeCreatorJob.setMapperClass(ErdosRenyiEdgeMapper.class);
- 	   	//edgeCreatorJob.setCombinerClass(Combiner.class);
-    	edgeCreatorJob.setReducerClass(ErdosRenyiEdgeReducer.class);
+            FileInputFormat.setInputPaths(pathPrinterJob, new Path(input));
+            FileOutputFormat.setOutputPath(pathPrinterJob, new Path(output));
+            
+            pathPrinterJob.setMapperClass(SSSP_UW_PathMapper.class);
+            //pathPrinterJob.setCombinerClass(Combiner.class);
+            pathPrinterJob.setReducerClass(SSSP_UW_PathReducer.class);
+            // DONOT MODIFY
+            pathPrinterJob.setNumReduceTasks(1);
 
-    	edgeCreatorJob.setOutputKeyClass(Text.class);
-    	edgeCreatorJob.setOutputValueClass(Text.class);
-     
-        startTime = System.nanoTime();
-        edgeCreatorJob.waitForCompletion(true); 
-        endTime = System.nanoTime();
-        runningTime = endTime - startTime;
-        totalRunningTime += runningTime;
-        //terminationValue =  edgeCreatorJob.getCounters().findCounter(MoreIterations.numberOfIterations).setValue();*/
+            pathPrinterJob.setOutputKeyClass(Text.class);
+            pathPrinterJob.setOutputValueClass(Text.class);
+         
+            startTime = System.nanoTime();
+            pathPrinterJob.waitForCompletion(true); 
+            endTime = System.nanoTime();
+            runningTime = endTime - startTime;
+            totalRunningTime += runningTime;
+
+            System.out.println("=====================================================================");
+            System.out.println ("Job Running Time = " + runningTime);
+            rootReached =  pathPrinterJob.getCounters().findCounter(MoreIterations.numberOfIterations).getValue();
+            System.out.println("Counter "  + rootReached);
+            System.out.println("=====================================================================");
+            loopCount++;
+
+            // Getting new source
+            Path pt = new Path(output + "/part-r-00000");
+            FileSystem fs = FileSystem.get(new Configuration());
+            BufferedReader br=new BufferedReader(new InputStreamReader(fs.open(pt)));
+            String line;
+
+            while ((line = br.readLine()) != null)
+                source = line.trim();
+            if(source.equals("source"))
+                rootReached = 1;
+            path.add(0,source);
+
+        }
+        System.out.println("Removing temporary files");
+        FileSystem del = FileSystem.get(getConf());
+        del.delete(new Path(args[1]+"/temp"), true); 
+        System.out.println("Writing Path to file");
+        writePath(args[1]+"/path.txt", path);        
         System.out.println("=====================================================================");
         System.out.println("Total Running Time "+ getRunningTime(totalRunningTime));
         System.out.println("=====================================================================");
+
         return 0;
     }
 
@@ -129,5 +170,30 @@ public class SSSP_UW_Job extends Configured implements Tool {
         x /= 60;
         long hours = x % 24;
         return Long.toString(hours) + " hours," + Long.toString(minutes) +" Minutes," + Long.toString(seconds) + " seconds" ;
+    }
+
+    public static  void  writePath(String pathToFile, List<String> path) {
+        Configuration config = new Configuration(); 
+        config.addResource(new Path("/HADOOP_HOME/conf/core-site.xml"));
+        config.addResource(new Path("/HADOOP_HOME/conf/hdfs-site.xml"));    
+        try {
+            FileSystem fs = FileSystem.get(config); 
+            Path filenamePath = new Path(pathToFile);  
+            if (fs.exists(filenamePath))
+                fs.delete(filenamePath, true);
+    
+            FSDataOutputStream fin = fs.create(filenamePath);
+
+            int size = path.size();
+            for(String s : path) {
+                fin.writeUTF(s);
+                size--;
+                if(size != 0)
+                    fin.writeUTF(" --> ");  
+            }
+            fin.close();
+        } catch(Exception e){
+            System.out.println("Exception writing to file");
+        }
     }
 }
