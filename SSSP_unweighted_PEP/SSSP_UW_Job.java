@@ -192,14 +192,14 @@ public class SSSP_UW_Job extends Configured implements Tool {
     
             FSDataOutputStream fin = fs.create(filenamePath);
             if(noPath)
-                fin.writeUTF("NO PATH");
+                fin.write("NO PATH".getBytes());
             else {
                 int size = path.size();
                 for(String s : path) {
-                    fin.writeUTF(s);
+                    fin.write(s.getBytes());
                     size--;
                     if(size != 0)
-                        fin.writeUTF(" --> ");  
+                        fin.write(" --> ".getBytes());  
                 }
             }
             fin.close();
