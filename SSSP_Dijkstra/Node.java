@@ -22,9 +22,8 @@ enum MoreIterations {
 
 public class Node {
    
-    // WHITE : Shortest path not found. BLACK : Shortest Path found
     public static enum Color {
-        WHITE, BLACK
+        WHITE, GRAY, BLACK
     };
  
     private String id;
