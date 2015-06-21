@@ -20,6 +20,7 @@ public class SSSP_Dijkstra_RelaxReducer extends Reducer<Text, Text, Text, Text> 
     public void reduce(Text key, Iterable<Text> values, Context context)
             throws IOException, InterruptedException {
         Node outNode = new Node();
+        boolean hasWhite = false , hasGray = false;
          
         // set the node id as the key
         outNode.setId(key.toString());
@@ -36,13 +37,16 @@ public class SSSP_Dijkstra_RelaxReducer extends Reducer<Text, Text, Text, Text> 
             else if (inNode.getColor() == Node.Color.GRAY) {
                 outNode.setDistance(inNode.getDistance());
                 outNode.setColor(inNode.getColor());
+                outNode.setEdges(inNode.getEdges());
+                hasGray = true;
             }
             else if (inNode.getColor() == Node.Color.WHITE) {
                 outNode.setEdges(inNode.getEdges());
+                hasWhite = true;
             }
         }
         // Update the context object so that jobs can be informed about when to stop
-        if (outNode.getColor() == Node.Color.GRAY)
+        if (outNode.getColor() == Node.Color.GRAY && hasWhite)
             context.getCounter(MoreIterations.numberOfIterations).increment(1);
 
         context.write(key, new Text(outNode.getNodeInfo()));      

@@ -36,18 +36,21 @@ public class DijkstraJob extends Configured implements Tool {
 	
 	@Override
     public int run(String[] args) throws Exception {
-        long startTime, endTime, totalRunningTime = 0;
+        long startTime, endTime, runningTime = 0;
         long iterationCount = 0;
-        long noOfGray = 1;     
+        long noOfGray = 1;  
+        String source = args[3];   
                 
         startTime = System.nanoTime();
 	    while (noOfGray > 0) {
 	    	if(iterationCount != 0)
 	    		source = extractMinimum(iterationCount,args); 
-	    	mr_Relax(source, iterationCount,args);
-	    	noOfGray +=  DijkstraJob.getCounters().findCounter(MoreIterations.numberOfIterations).getValue();
-	    	noOfGray -= 1;
-	    	iterationCount++;
+		    noOfGray += mr_Relax(source, iterationCount,args);
+			noOfGray--;
+			iterationCount++;
+			System.out.println("=====================================================================");
+	        System.out.println("Source "+ source +" no gray "+noOfGray	);
+	        System.out.println("=====================================================================");
 	    }
 	    endTime = System.nanoTime();
         runningTime = endTime - startTime;
@@ -56,9 +59,13 @@ public class DijkstraJob extends Configured implements Tool {
         System.out.println("=====================================================================");
         return 0;
     }
-    public void mr_Relax(String source, long iterationCount, String[] args) {
+    public long mr_Relax(String source, long iterationCount, String[] args) throws Exception {
     	Configuration conf = new Configuration();
-        conf.set("source", source);		
+        conf.set("parent", source);		
+        if(iterationCount == 0)
+        	conf.set("iterationCount","0");
+        else
+        	conf.set("iterationCount","1s");
         Job DijkstraJob = new Job(conf);
         String input, output;
         String DijkstraJobName = new String(args[2]+ "_Dijkstra_"+ String.valueOf(iterationCount));
@@ -74,7 +81,7 @@ public class DijkstraJob extends Configured implements Tool {
         FileInputFormat.setInputPaths(DijkstraJob, new Path(input));
         FileOutputFormat.setOutputPath(DijkstraJob, new Path(output));
         
-        DijkstraJob.setMapperClass(SSSP_Dijkstra_RealaxMapper.class);
+        DijkstraJob.setMapperClass(SSSP_Dijkstra_RelaxMapper.class);
  	   	DijkstraJob.setReducerClass(SSSP_Dijkstra_RelaxReducer.class);
     	DijkstraJob.setNumReduceTasks(1);
 
@@ -82,13 +89,14 @@ public class DijkstraJob extends Configured implements Tool {
     	DijkstraJob.setOutputValueClass(Text.class);
      
         DijkstraJob.waitForCompletion(true); 
+        return DijkstraJob.getCounters().findCounter(MoreIterations.numberOfIterations).getValue();
     }
 
-    public String extractMinimum(long iterationCount, String[] args) {
+    public String extractMinimum(long iterationCount, String[] args) throws Exception{
     	Configuration conf = new Configuration();
         Job extractMinJob = new Job(conf);
         String input, output;
-        String extratJobName = new String(args[2]+ "_Dijkstra_extract_");
+        String extractJobName = new String(args[2]+ "_Dijkstra_extract_");
         extractMinJob.setJarByClass(getClass());
         extractMinJob.setJobName(extractJobName);
         input = args[1]+"/run" + String.valueOf(iterationCount-1);
@@ -108,7 +116,7 @@ public class DijkstraJob extends Configured implements Tool {
         FileSystem fs = FileSystem.get(new Configuration());
         BufferedReader br=new BufferedReader(new InputStreamReader(fs.open(pt)));
         String line;
-        String minimum;
+        String minimum ="";
         while ((line = br.readLine()) != null) {
             minimum = line.trim();
         }
@@ -241,7 +249,7 @@ public class DijkstraJob extends Configured implements Tool {
             System.err.println("Usage: <in> <output name> <jobName> <source> [<destination>]");
             System.exit(1);
         }
-        int res = ToolRunner.run(new SSSP_DijkstraJob(), args);
+        int res = ToolRunner.run(new DijkstraJob(), args);
         System.exit(res);
     }
 }

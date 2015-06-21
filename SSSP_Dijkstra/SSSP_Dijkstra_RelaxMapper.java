@@ -31,11 +31,13 @@ public class SSSP_Dijkstra_RelaxMapper extends Mapper<LongWritable, Text, Text, 
         Node inNode = new Node(value.toString());
         Configuration conf = context.getConfiguration();
         String param1 = conf.get("parent");
+        if(conf.get("iterationCount").equals("0"))
+            inNode.setDistance(0);
         
-		if(inNode.getParent().equals(param1)) {
+		if(inNode.getId().equals(param1)) {
 			for(String neighbour : inNode.getEdges()) {
-				String[] elements = neighbour.split("*");
-				Node adjNode = new Node();
+				String[] elements = neighbour.split("\\*");
+				Node adjacentNode = new Node();
 				adjacentNode.setId(elements[0]); 
                 adjacentNode.setDistance(inNode.getDistance() + Integer.valueOf(elements[1]));
                 adjacentNode.setColor(Node.Color.GRAY);
@@ -43,9 +45,9 @@ public class SSSP_Dijkstra_RelaxMapper extends Mapper<LongWritable, Text, Text, 
                 context.write(new Text(adjacentNode.getId()), adjacentNode.getNodeInfo());
 			}
 			inNode.setColor(Node.Color.BLACK);
-			context.write(new Text(inNode.getId()), inNoe.getNNodeInfo());
+			context.write(new Text(inNode.getId()), inNode.getNodeInfo());
 		} else 
-			context.write(new Text(inNode.getParent()),new Text(""));
+            context.write(new Text(inNode.getId()), inNode.getNodeInfo());
     }
 }
 

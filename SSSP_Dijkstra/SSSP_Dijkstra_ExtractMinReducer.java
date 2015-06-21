@@ -19,14 +19,14 @@ public class SSSP_Dijkstra_ExtractMinReducer extends Reducer<Text, Text, Text, T
      @Override
     public void reduce(Text key, Iterable<Text> values, Context context)
             throws IOException, InterruptedException {
-        Integer max = Integer.MAX_VALUE;  
-        String id;       
+        Integer min = Integer.MAX_VALUE;  
+        String id="";       
         for (Text value : values) {
-            String[] tokens = value.split(",");
+            String[] tokens = value.toString().split(",");
             Integer distance = Integer.valueOf(tokens[0]);
             
-            if(max < distance) {
-            	max = distance;
+            if(min > distance) {
+            	min = distance;
             	id = tokens[1];
             }
         }

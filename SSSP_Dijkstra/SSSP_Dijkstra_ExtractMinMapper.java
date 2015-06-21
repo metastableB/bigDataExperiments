@@ -27,8 +27,9 @@ public class SSSP_Dijkstra_ExtractMinMapper extends Mapper<LongWritable, Text, T
             throws IOException, InterruptedException {
 
         Node inNode = new Node(value.toString());
-        Long distance = inNode.getDistance();
-        context.write(new Text(1),new Text(distance.toString() + "," + inNode.getId()));
+        Integer distance = inNode.getDistance();
+        if(inNode.getColor() == Node.Color.GRAY)
+            context.write(new Text("1"),new Text(distance.toString() + "," + inNode.getId()));
     }
 }
 
