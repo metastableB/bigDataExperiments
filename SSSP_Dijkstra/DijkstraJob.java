@@ -43,8 +43,8 @@ public class DijkstraJob extends Configured implements Tool {
         startTime = System.nanoTime();
 	    while (noOfGray > 0) {
 	    	if(iterationCount != 0)
-	    		source = extractMinimum(); 
-	    	mr_Relax(source, iterationCount);
+	    		source = extractMinimum(iterationCount,args); 
+	    	mr_Relax(source, iterationCount,args);
 	    	noOfGray +=  DijkstraJob.getCounters().findCounter(MoreIterations.numberOfIterations).getValue();
 	    	noOfGray -= 1;
 	    	iterationCount++;
@@ -56,7 +56,7 @@ public class DijkstraJob extends Configured implements Tool {
         System.out.println("=====================================================================");
         return 0;
     }
-    public void mr_Relax(String source, long iterationCount) {
+    public void mr_Relax(String source, long iterationCount, String[] args) {
     	Configuration conf = new Configuration();
         conf.set("source", source);		
         Job DijkstraJob = new Job(conf);
@@ -84,8 +84,38 @@ public class DijkstraJob extends Configured implements Tool {
         DijkstraJob.waitForCompletion(true); 
     }
 
-    public String extractMinimum() {
+    public String extractMinimum(long iterationCount, String[] args) {
+    	Configuration conf = new Configuration();
+        Job extractMinJob = new Job(conf);
+        String input, output;
+        String extratJobName = new String(args[2]+ "_Dijkstra_extract_");
+        extractMinJob.setJarByClass(getClass());
+        extractMinJob.setJobName(extractJobName);
+        input = args[1]+"/run" + String.valueOf(iterationCount-1);
+        output = args[1]+"/temp";
+        FileInputFormat.setInputPaths(extractMinJob, new Path(input));
+        FileOutputFormat.setOutputPath(extractMinJob, new Path(output));
+        
+        extractMinJob.setMapperClass(SSSP_Dijkstra_ExtractMinMapper.class);
+ 	   	extractMinJob.setReducerClass(SSSP_Dijkstra_ExtractMinReducer.class);
+ 	   	// WARNING: DONOT CHANGE THIS
+    	extractMinJob.setNumReduceTasks(1);
+    	extractMinJob.setOutputKeyClass(Text.class);
+    	extractMinJob.setOutputValueClass(Text.class);
+        extractMinJob.waitForCompletion(true); 
 
+        Path pt = new Path(output + "/part-r-00000");
+        FileSystem fs = FileSystem.get(new Configuration());
+        BufferedReader br=new BufferedReader(new InputStreamReader(fs.open(pt)));
+        String line;
+        String minimum;
+        while ((line = br.readLine()) != null) {
+            minimum = line.trim();
+        }
+        FileSystem del = FileSystem.get(getConf());
+        del.delete(new Path(args[1]+"/temp"), true); 
+        return minimum;
+        
     }
 	    /*
 	        System.out.println("=====================================================================");
@@ -161,8 +191,7 @@ public class DijkstraJob extends Configured implements Tool {
             }
               
             System.out.println("Removing temporary files");
-            FileSystem del = FileSystem.get(getConf());
-            del.delete(new Path(args[1]+"/temp"), true); 
+           
             System.out.println("Writing Path to file");
             writePath(args[1]+"/path.txt", path ,noPath);        
         }*/
@@ -212,7 +241,7 @@ public class DijkstraJob extends Configured implements Tool {
             System.err.println("Usage: <in> <output name> <jobName> <source> [<destination>]");
             System.exit(1);
         }
-        int res = ToolRunner.run(new SSSP_UW_Job(), args);
+        int res = ToolRunner.run(new SSSP_DijkstraJob(), args);
         System.exit(res);
     }
 }
