@@ -30,12 +30,14 @@ public class SSSP_Dijkstra_RelaxReducer extends Reducer<Text, Text, Text, Text> 
             // Emit one node after combining all the mapper outputs
             
             if (inNode.getColor() == Node.Color.BLACK) {
-                outNode.setDistance(inNode.getDistance());
+            	if(outNode.getDistance() > inNode.getDistance())
+                	outNode.setDistance(inNode.getDistance());
                 outNode.setColor(inNode.getColor());
                 break;
             } 
             else if (inNode.getColor() == Node.Color.GRAY) {
-                outNode.setDistance(inNode.getDistance());
+            	if(outNode.getDistance() > inNode.getDistance())
+                	outNode.setDistance(inNode.getDistance());
                 outNode.setColor(inNode.getColor());
                 outNode.setEdges(inNode.getEdges());
                 hasGray = true;
