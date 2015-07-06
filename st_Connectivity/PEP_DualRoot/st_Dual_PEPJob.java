@@ -8,11 +8,6 @@
  * (c) IIIT Delhi, 2015
  */
 
-/*NOTES : require adj list representation
-null values should be mentioned in start_point
-star!=end
-keys must exist in set
-*/
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
