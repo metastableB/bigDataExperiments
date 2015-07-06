@@ -89,9 +89,6 @@ public class st_Dual_PEPJob extends Configured implements Tool {
             noOfGrayNodes =  st_Dual_PEPJob.getCounters().findCounter(MoreIterations.numberOfIterations).getValue();
             connected =  st_Dual_PEPJob.getCounters().findCounter(MoreIterations.bothBranchesMeet).getValue(); 
             evenPathFound = (st_Dual_PEPJob.getCounters().findCounter(MoreIterations.evenPath).getValue() != 0 ); 
-            System.out.println("noOfGray "+ noOfGrayNodes);
-            System.out.println("Convergence Value "+ connected);
-            System.out.println("Even "+ evenPathFound);
             System.out.println("=====================================================================");
         }
 
