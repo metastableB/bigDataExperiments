@@ -1,14 +1,9 @@
 /*
  * Don K Dennis (metastableB)
- * 21 May 2015
+ * 06 July 2015
  * donkdennis [at] gmail.com
  *
- * Partial Edges Passing BFS,
- * As described in
- * Implementing Quasi-Parallel BFS in MapReduce for Large Scale Social Network Mining
- * - Lianghong Qian, Lei Fan and Jianhua Li
- *
- * I/O: source<tab>distance|color|adjacency list (csv)
+ * I/O: source<tab>distance,start_point|color|adjacency list (csv)
  *
  * (c) IIIT Delhi, 2015
  */
@@ -18,14 +13,11 @@ import org.apache.hadoop.io.Text;
 
 // Defining a counter
 enum MoreIterations {
-    numberOfIterations
+    numberOfIterations, bothBranchesMeet
 }
 
 
 public class Node {
-   
-    // Three possible colours a node can have
-    // WHITE : not explored, GRAY : being explored . BLACK : Completely explored
     public static enum Color {
         WHITE, GRAY, BLACK
     };
@@ -34,11 +26,13 @@ public class Node {
     private int distance;
     private List<String> edges = new ArrayList<String>();
     private Color color = Color.WHITE;
+    private String startPoint = null;
     private String parent;
  
     public Node() {       
         edges = new ArrayList<String>();
         distance = Integer.MAX_VALUE;
+        startPoint = null;
         color = Color.WHITE;
         parent = null;
     }
@@ -58,17 +52,17 @@ public class Node {
         }
  		// String.split() uses regex, therefore escape |
         String[] tokens = value.split("\\|");
-        // tokens[0] = distance, tokens[1]= color, tokens[2]= Adjacency List
+        // tokens[0] = distance,start_point, tokens[1]= color, tokens[2]= Adjacency List
  
         this.id = key;
- 		
-        if (tokens[0].equals("Integer.MAX_VALUE")) {
+ 		String[] distance_tokens = tokens[0].split(",");
+        if (distance_tokens[0].equals("Integer.MAX_VALUE")) {
             this.distance = Integer.MAX_VALUE;
         } else {
-            this.distance = Integer.parseInt(tokens[0]);
+            this.distance = Integer.parseInt(distance_tokens[0]);
         }
+        this.startPoint = distance_tokens[1];
         this.color = Color.valueOf(tokens[1]);
-
         if(tokens.length == 3) {
             try {
                    for (String s : tokens[2].split(",")) {
@@ -87,9 +81,11 @@ public class Node {
     public Text getNodeInfo() {
     	StringBuffer s = new StringBuffer();      
         if (this.distance < Integer.MAX_VALUE) {
-            s.append(this.distance).append("|");
+            s.append(this.distance);
+            s.append(this.startPoint).append("|");
         } else {
-            s.append("Integer.MAX_VALUE").append("|");
+            s.append("Integer.MAX_VALUE");
+            s.append(this.startPoint).append("|");
         }
         // append the color of the node
         s.append(color.toString()).append("|");
@@ -113,6 +109,9 @@ public class Node {
 		return this.distance;
 	}
 
+	public String getStartPoint() {
+		return this.startPoint;
+	}
 	// Returns a csv of edges
 	public List<String> getEdges() {
 		return this.edges;
@@ -129,7 +128,9 @@ public class Node {
 	public void setDistance(int d) {
 		this.distance = d;
 	}
-
+	public void setStartPoint(String s) {
+		this.startPoint = s;
+	}
 	public void setColor( Color s) {
 		this.color = s;
 	}

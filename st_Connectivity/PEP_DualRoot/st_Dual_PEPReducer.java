@@ -3,11 +3,6 @@
  * 21 May 2015
  * donkdennis [at] gmail.com
  *
- * Partial Edges Passing BFS,
- * As described in
- * Implementing Quasi-Parallel BFS in MapReduce for Large Scale Social Network Mining
- * - Lianghong Qian, Lei Fan and Jianhua Li
- *
  * I/O: source<tab>distance|color|adjacency list (csv)
  *
  * (c) IIIT Delhi, 2015
@@ -17,7 +12,7 @@ import org.apache.hadoop.mapreduce.Reducer;
 import org.apache.hadoop.io.Text;
 import java.io.IOException;
 
-public class PEPReducer extends Reducer<Text, Text, Text, Text> {
+public class st_Dual_PEPReducer extends Reducer<Text, Text, Text, Text> {
  
     // Types of the input key, the values associated with the key, the Context object for Reducers communication
     // with the Hadoop framework and the node whose information has to be output
@@ -26,7 +21,8 @@ public class PEPReducer extends Reducer<Text, Text, Text, Text> {
     public void reduce(Text key, Iterable<Text> values, Context context)
             throws IOException, InterruptedException {
         Node outNode = new Node();
-         
+        String startPoint = "null";
+        boolean stConnected = false;
         // set the node id as the key
         outNode.setId(key.toString());
            
@@ -43,6 +39,12 @@ public class PEPReducer extends Reducer<Text, Text, Text, Text> {
             else if (inNode.getColor() == Node.Color.GRAY) {
                 outNode.setDistance(inNode.getDistance());
                 outNode.setColor(inNode.getColor());
+                if(startPoint.equals("null"))
+                	startPoint = inNode.getStartPoint();
+                else if (!startPoint.equals(inNode.getStartPoint())){
+                	stConnected = true;
+                }
+
             }
             // If its black, we dont add the adj list. If its gray, it will have a white counterpart
             // We dont have to worry about the adj list hack used in mapper since those were for GRAY
@@ -51,9 +53,11 @@ public class PEPReducer extends Reducer<Text, Text, Text, Text> {
             }
         }
         // Update the context object so that jobs can be informed about when to stop
-        if (outNode.getColor() == Node.Color.GRAY)
+        if (outNode.getColor() == Node.Color.GRAY){
+        	if(stConnected)
+        		context.getCounter(MoreIterations.bothBranchesMeet).increment(1);
             context.getCounter(MoreIterations.numberOfIterations).increment(1);
-
+        }
         context.write(key, new Text(outNode.getNodeInfo()));      
     }
 }
