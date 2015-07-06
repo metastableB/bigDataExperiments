@@ -100,6 +100,8 @@ public class st_Dual_PEPJob extends Configured implements Tool {
         else 
             pathLength = (iterationCount+1)*2 - 1;
         pathLength = pathLength - 1;
+        if(connected == 0)
+            pathLength = -1;
         System.out.println("=====================================================================");
         System.out.println("Total Running Time "+ getRunningTime(totalRunningTime));
         System.out.println("Path Length "+ pathLength);
