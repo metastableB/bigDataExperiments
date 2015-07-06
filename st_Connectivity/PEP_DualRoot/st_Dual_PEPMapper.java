@@ -32,12 +32,16 @@ public class st_Dual_PEPMapper extends Mapper<LongWritable, Text, Text, Text> {
         String s = conf.get("s");
         String t = conf.get("t");
         if(conf.get("iterationCount").equals("0")){
-        	if(inNode.getId().equals(s))
+        	if(inNode.getId().equals(s)){
         		inNode.setStartPoint(s);
-        	else if(inNode.getId().equals(t))
-        		inNode.setStartPoint(t);
-            inNode.setDistance(0);
+        		inNode.setDistance(0);
             inNode.setColor(Node.Color.GRAY);
+        	}
+        	else if(inNode.getId().equals(t)){
+        		inNode.setStartPoint(t);
+        		inNode.setDistance(0);
+            	inNode.setColor(Node.Color.GRAY);
+        	}
         }
  
 	    if (inNode.getColor() == Node.Color.GRAY) {

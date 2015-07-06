@@ -13,9 +13,8 @@ import org.apache.hadoop.io.Text;
 
 // Defining a counter
 enum MoreIterations {
-    numberOfIterations, bothBranchesMeet
+    numberOfIterations, bothBranchesMeet, evenPath
 }
-
 
 public class Node {
     public static enum Color {
@@ -81,10 +80,10 @@ public class Node {
     public Text getNodeInfo() {
     	StringBuffer s = new StringBuffer();      
         if (this.distance < Integer.MAX_VALUE) {
-            s.append(this.distance);
+            s.append(this.distance).append(",");
             s.append(this.startPoint).append("|");
         } else {
-            s.append("Integer.MAX_VALUE");
+            s.append("Integer.MAX_VALUE").append(",");
             s.append(this.startPoint).append("|");
         }
         // append the color of the node

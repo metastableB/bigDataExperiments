@@ -20,27 +20,44 @@ public class st_Dual_PEPReducer extends Reducer<Text, Text, Text, Text> {
     @Override
     public void reduce(Text key, Iterable<Text> values, Context context)
             throws IOException, InterruptedException {
-        Node outNode = new Node();
+        Node outNode1 = new Node();
+        Node outNode2 = new Node();
+        boolean blackFound = false;
+        boolean grayFound = false;
+        
         String startPoint = "null";
         boolean stConnected = false;
         // set the node id as the key
-        outNode.setId(key.toString());
+        outNode1.setId(key.toString());
+        outNode2.setId(key.toString());
            
         for (Text value : values) {
             Node inNode = new Node(key.toString() + "\t" + value.toString());
+           // context.write(key, new Text(inNode.getNodeInfo()));      
             // Emit one node after combining all the mapper outputs
             
             if (inNode.getColor() == Node.Color.BLACK) {
-                outNode.setDistance(inNode.getDistance());
-                outNode.setColor(inNode.getColor());
-                break;
+                blackFound = true;
+                outNode2.setDistance(inNode.getDistance());
+                outNode2.setColor(inNode.getColor());
+                if(startPoint.equals("null")) {
+                    outNode2.setStartPoint(inNode.getStartPoint());
+                    startPoint = inNode.getStartPoint();
+                }
+                else if (!startPoint.equals(inNode.getStartPoint()))
+                    stConnected = true;
             } 
 
             else if (inNode.getColor() == Node.Color.GRAY) {
-                outNode.setDistance(inNode.getDistance());
-                outNode.setColor(inNode.getColor());
-                if(startPoint.equals("null"))
+                grayFound = true;
+                if(!blackFound){
+                    outNode1.setDistance(inNode.getDistance());
+                    outNode1.setColor(inNode.getColor());
+                }
+                if(startPoint.equals("null")){
                 	startPoint = inNode.getStartPoint();
+                    outNode1.setStartPoint(inNode.getStartPoint());
+                }
                 else if (!startPoint.equals(inNode.getStartPoint())){
                 	stConnected = true;
                 }
@@ -48,17 +65,25 @@ public class st_Dual_PEPReducer extends Reducer<Text, Text, Text, Text> {
             }
             // If its black, we dont add the adj list. If its gray, it will have a white counterpart
             // We dont have to worry about the adj list hack used in mapper since those were for GRAY
-            else if (inNode.getColor() == Node.Color.WHITE) {
-                outNode.setEdges(inNode.getEdges());
+            else if (inNode.getColor() == Node.Color.WHITE && !blackFound) {
+                outNode1.setEdges(inNode.getEdges());
             }
         }
-        // Update the context object so that jobs can be informed about when to stop
-        if (outNode.getColor() == Node.Color.GRAY){
-        	if(stConnected)
-        		context.getCounter(MoreIterations.bothBranchesMeet).increment(1);
+        
+        if(blackFound) {
+            if(stConnected)
+                context.getCounter(MoreIterations.bothBranchesMeet).increment(1);
+             context.write(key, new Text(outNode2.getNodeInfo()));      
+        }
+        else { // WHITE OR GRAY
+            if(stConnected)
+                context.getCounter(MoreIterations.bothBranchesMeet).increment(1);
+            context.write(key, new Text(outNode1.getNodeInfo()));      	
             context.getCounter(MoreIterations.numberOfIterations).increment(1);
         }
-        context.write(key, new Text(outNode.getNodeInfo()));      
+        // Even paths are distinguished by the presence of BLACK and GRAY pairs for the common nodes
+        if(blackFound && grayFound && stConnected)
+            context.getCounter(MoreIterations.evenPath).increment(1);
     }
 }
 

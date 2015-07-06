@@ -10,6 +10,8 @@
 
 /*NOTES : require adj list representation
 null values should be mentioned in start_point
+star!=end
+keys must exist in set
 */
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -39,10 +41,11 @@ public class st_Dual_PEPJob extends Configured implements Tool {
         String s,t;
         s = args[3];
         t = args[4];
-        long connected = 0;
+        long connected = 0,pathLength;
         long noOfGrayNodes = 2 , runningTime, startTime, endTime, totalRunningTime = 0;
-            
-        while( noOfGrayNodes > 0 && iterationCount < 1){
+        boolean evenPathFound = false;
+
+        while( noOfGrayNodes > 0 && connected == 0){
             Configuration conf = new Configuration();
             conf.set("s", s);
             conf.set("t",t);
@@ -85,12 +88,21 @@ public class st_Dual_PEPJob extends Configured implements Tool {
             System.out.println ("Job Running Time = " + runningTime);
             noOfGrayNodes =  st_Dual_PEPJob.getCounters().findCounter(MoreIterations.numberOfIterations).getValue();
             connected =  st_Dual_PEPJob.getCounters().findCounter(MoreIterations.bothBranchesMeet).getValue(); 
+            evenPathFound = (st_Dual_PEPJob.getCounters().findCounter(MoreIterations.evenPath).getValue() != 0 ); 
             System.out.println("noOfGray "+ noOfGrayNodes);
             System.out.println("Convergence Value "+ connected);
+            System.out.println("Even "+ evenPathFound);
             System.out.println("=====================================================================");
         }
+
+        if(evenPathFound)
+            pathLength = (iterationCount)*2;
+        else 
+            pathLength = (iterationCount+1)*2 - 1;
+        pathLength = pathLength - 1;
         System.out.println("=====================================================================");
         System.out.println("Total Running Time "+ getRunningTime(totalRunningTime));
+        System.out.println("Path Length "+ pathLength);
         System.out.println("=====================================================================");
         return 0;
     }
