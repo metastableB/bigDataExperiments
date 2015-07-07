@@ -1,0 +1,12 @@
+The live journal data is directed and the file contains lines form 
+u 	v
+
+You nead to make it undirected.
+Follow the below mentioned procedure.
+
+1) MAP REDUCE 1 
+	for each (u,v)
+		write u,v as well as v,u
+2) MAP REDUCE 2
+	for each (u, {v})
+		create the appropriate format string ignoreing duplicates
