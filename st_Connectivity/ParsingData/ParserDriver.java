@@ -34,9 +34,9 @@ public class ParserDriver extends Configured implements Tool {
         Job unweightingJob = new Job(conf);
         String input, output;
         String JobName = new String(args[2]+ "_Unweighting_");
-        unweightingJob.setJarByClass(getClass());
+        unweightingJob.setJarByClass(ParserDriver.class);
         unweightingJob.setJobName(JobName);
-          input = args[0];
+        input = args[0];
         output = args[1]+"/uw";
         FileInputFormat.setInputPaths(unweightingJob, new Path(input));
         FileOutputFormat.setOutputPath(unweightingJob, new Path(output));
@@ -50,7 +50,7 @@ public class ParserDriver extends Configured implements Tool {
 
         Job listCreator = new Job(conf);
         String JobName2 = new String(args[2]+ "_ListCreator_");
-        listCreator.setJarByClass(getClass());
+        listCreator.setJarByClass(ParserDriver.class);
         listCreator.setJobName(JobName);
         input = args[1]+"/uw";
         output = args[1]+"/out";
