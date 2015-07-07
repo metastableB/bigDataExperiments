@@ -36,21 +36,33 @@ public class ParserDriver extends Configured implements Tool {
         String JobName = new String(args[2]+ "_Unweighting_");
         unweightingJob.setJarByClass(getClass());
         unweightingJob.setJobName(JobName);
-       
-        input = args[0];
+          input = args[0];
         output = args[1]+"/uw";
-   
         FileInputFormat.setInputPaths(unweightingJob, new Path(input));
         FileOutputFormat.setOutputPath(unweightingJob, new Path(output));
-        
         unweightingJob.setMapperClass(UnweightingMapper.class);
         unweightingJob.setReducerClass(UnweightingReducer.class);
         unweightingJob.setNumReduceTasks(1);
-
         unweightingJob.setOutputKeyClass(Text.class);
         unweightingJob.setOutputValueClass(Text.class);
      
-        unweightingJob.waitForCompletion(true); 
+        unweightingJob.waitForCompletion(true);
+
+        Job listCreator = new Job(conf);
+        String JobName2 = new String(args[2]+ "_ListCreator_");
+        listCreator.setJarByClass(getClass());
+        listCreator.setJobName(JobName);
+        input = args[1]+"/uw";
+        output = args[1]+"/out";
+        FileInputFormat.setInputPaths(listCreator, new Path(input));
+        FileOutputFormat.setOutputPath(listCreator, new Path(output));
+        listCreator.setMapperClass(ListCreatorMapper.class);
+        listCreator.setReducerClass(ListCreatorReducer.class);
+        listCreator.setNumReduceTasks(1);
+        listCreator.setOutputKeyClass(Text.class);
+        listCreator.setOutputValueClass(Text.class);
+ 
+        listCreator.waitForCompletion(true); 
         
         return 0;
     }
