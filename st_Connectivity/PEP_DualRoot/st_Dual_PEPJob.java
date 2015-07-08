@@ -51,7 +51,7 @@ public class st_Dual_PEPJob extends Configured implements Tool {
             Job st_Dual_PEPJob = new Job(conf);
             String input, output;
             String JobName = new String(args[2]+ "_st_Dual_PEP_"+ String.valueOf(iterationCount));
-            st_Dual_PEPJob.setJarByClass(getClass());
+            st_Dual_PEPJob.setJarByClass(st_Dual_PEPJob.class);
             st_Dual_PEPJob.setJobName(JobName);
             if(iterationCount == 0){
                input = args[0];

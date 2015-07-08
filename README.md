@@ -7,6 +7,6 @@ Visit [here](http://www.dkdennis.com/blog/html/summer2015/) to find out more.
 
 ## Reminder 
 Always set the requisite number of reduce tasks and the jar name before running!
-
+export HADOOP_CLASSPATH=$HADOOP_CLASSPATH:`echo *.jar`:`echo lib/*.jar | sed 's/ /:/g'`
 &copy;IIIT Delhi , 2015.
 

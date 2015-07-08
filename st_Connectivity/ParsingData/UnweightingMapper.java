@@ -1,6 +1,6 @@
 /*
  * Don K Dennis (metastableB)
- * 07 May 2015
+ * 07 July 2015
  * donkdennis [at] gmail.com
  *
  * I/O: u<tab>v
