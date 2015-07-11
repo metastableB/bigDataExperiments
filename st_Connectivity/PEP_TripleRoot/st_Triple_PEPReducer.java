@@ -37,20 +37,6 @@ public class st_Triple_PEPReducer extends Reducer<Text, Text, Text, Text> {
 
         Integer minDistance = Integer.MAX_VALUE;
         Integer tempDistance = Integer.MAX_VALUE;
-        /*ArrayList<Text> cache = new ArrayList<Text>();
-        for(Text value : values) {
-            cache.add(value);
-            context.write(new Text(key.toString() +"cac"),value);
-            String[] tokens2 = value.toString().split("\\|");
-            String[] tokens3 = tokens2[0].split(",");
-            if(tokens3[0].equals("Integer.MAX_VALUE"))
-                tempDistance = Integer.MAX_VALUE;
-            else 
-                tempDistance = Integer.valueOf(tokens3[0]);
-            if(tempDistance <= minDistance)
-                minDistance = tempDistance;
-        }*/
-
         for (Text value : values) {
             Node inNode = new Node(key.toString() + "\t" + value.toString());
 
@@ -70,10 +56,6 @@ public class st_Triple_PEPReducer extends Reducer<Text, Text, Text, Text> {
                 outNode2.reset();
                 blackFound = false;
             } else {
-                //context.write(new Text(key.toString() +"dum"),value);
-                //(inNode.getDistance() > minDistance)
-                  //  continue;
-                // if distance = mindistance 
                 if (inNode.getColor() == Node.Color.BLACK) {
                     if(inNode.getStartPoint().equals(s)) {
                         s_black = true;
