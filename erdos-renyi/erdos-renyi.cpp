@@ -14,8 +14,8 @@
 #include <chrono>
 
 int main(int argc , char *argv[]) {
-	if(argc != 4) {
-		std::cout << "Usage: ./a.out <Number of Nodes> <probability of edge occurance> <file_splits>\n";
+	if(argc != 5) {
+		std::cout << "Usage: ./a.out <Number of Nodes> <probability of edge occurance> <file_splits> <fileName>\n";
 		return 1;
 	}
 	double prob = std::stod(std::string(argv[2]));
@@ -33,7 +33,7 @@ int main(int argc , char *argv[]) {
 	std::cout << "Nodes " << numNodes << " prob: " << prob << "\n";
 
 	std::ofstream outFile;
-	std::string fileName = "inp_";
+	std::string fileName = argv[4];
 
   	std::default_random_engine generator;
   	std::uniform_real_distribution<double> distribution(0.0,1.0);
@@ -43,6 +43,11 @@ int main(int argc , char *argv[]) {
 	std::chrono::high_resolution_clock::time_point t1 = std::chrono::high_resolution_clock::now();
 
 	for(long i = 0; i < numNodes ; i++,linesWritten++) {
+		
+		if( i == 0 || i % 1000 == 0) {
+			percent = (double(i)/double(numNodes)) * 100 ;
+			std::cout << percent <<"\% written.\n";
+		}
 		if(linesWritten >= linesPerSplit) {
 			linesWritten = 0;
 			outFile.close();
@@ -50,9 +55,8 @@ int main(int argc , char *argv[]) {
 			std::cout << "Writing to " << fileName << fileId <<".\n";
 			fileId++;
 		}
-		percent = (double(i)/double(numNodes)) * 100 ;
-		std::cout << percent <<"\% written.\n";
-		outFile << i << "\tInteger.MAX_VALUE|WHITE|";
+		
+		outFile << i << "\tInteger.MAX_VALUE,null|WHITE|";
 		for(long j = 0; j < numNodes; j++, counter++) {
 			randomDouble = distribution(generator);
 			if(randomDouble - prob <= 0.0)
