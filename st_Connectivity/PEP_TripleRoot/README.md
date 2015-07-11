@@ -1,8 +1,8 @@
-# s-t Connectivity Test (Dual-Root)
+# s-t Connectivity Test (Triple-Root)
 
 This is an implementation to test the connectivity between two nodes s and t, implemented using a PEP Breadth First Search ( [here](https://github.com/metastableB/bigDataExperiments/tree/master/bfs/PartialEdgePassingBFS)), on hadoop.
 
-The basic idea is to run simultaneous BFS jobs from both **s** and **t** till at least one node is found common to both the BFS.
+The basic idea is to run simultaneous BFS jobs from both **s** and **t** and another node **u** till we can contruct the s-t shortest path.
 
 ## Notes
 
@@ -14,13 +14,13 @@ Where **Interger.MAX_VALUE** signifies an  infinite distance, **null** is a plac
 
 Since we are using adjacency list, for evey edge **(u,v)**, **v** should be in the adjacency list of **u** and **u** in the list of **v**.
 
-Further **s** and **t** should not be same and both values should exist in the set.
+Further **s** , **u** and **t** should not be same and both values should exist in the set.
 
 ## Usage
 
 Compile using regular hadoop compilation techniques and pack the classes in to a .jar. Use to following format to run
 
-    hadoop jar st_Dual_PEPJob.jar st_Dual_PEPJob <input files path> <output file path> <a name for the job> <s> <t>
+    hadoop jar st_Triple_PEPJob.jar st_Triple_PEPJob <input files path> <output file path> <a name for the job> <s> <t> <u>
 
 
 &copy;IIIT Delhi , 2015.
