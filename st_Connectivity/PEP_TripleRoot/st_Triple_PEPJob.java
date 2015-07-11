@@ -38,9 +38,10 @@ public class st_Triple_PEPJob extends Configured implements Tool {
         t = args[4];
         u = args[5];
 
-        long pathLength = 0;
+        long pathLength = 0, ut_path = 0, su_path = 0 ,st_path = 0;
         long noOfGrayNodes = 3 , runningTime, startTime, endTime, totalRunningTime = 0;
         boolean evenPathFound = false;
+        boolean pathNotSet = true, su_notSet = true, ut_notSet = true;
         boolean connected = false, st_connected = false,su_connected = false, ut_connected = false;
         boolean st_even = false, su_even = false, ut_even = false;
 
@@ -104,22 +105,32 @@ public class st_Triple_PEPJob extends Configured implements Tool {
             if(st_connected ) {
                 connected = true;
                 if(st_even)
-                    pathLength = (iterationCount)*2;
-                else pathLength = (iterationCount+1)*2 - 1;
-                pathLength = pathLength - 1;
-            } else if(ut_connected && su_connected && !st_connected) {
-                connected = true;
+                    st_path = (iterationCount)*2;
+                else st_path = (iterationCount+1)*2 - 1;
+                st_path = st_path - 1;
+                pathLength = st_path;
+            } else if(ut_connected && ut_notSet && !st_connected) {
+                ut_notSet = false;      
                 if(ut_even)
-                    pathLength = (iterationCount)*2;
-                else pathLength = (iterationCount+1)*2 - 1;
+                    ut_path = (iterationCount)*2;
+                else ut_path = (iterationCount+1)*2 - 1;
+                ut_path = ut_path - 1;
+            } else if (su_connected && su_notSet && !st_connected) {
+                su_notSet = false;      
                 if(su_even)
-                    pathLength += (iterationCount)*2;
-                else pathLength += (iterationCount+1)*2 - 1;
-                pathLength = pathLength - 2;
+                    su_path = (iterationCount)*2;
+                else su_path = (iterationCount+1)*2 - 1;
+                su_path = su_path - 1;
             }
-            System.out.println("st_connected " + st_connected+" st_even "+st_even) ;
-            System.out.println("su_connected " + su_connected+" su_even "+su_even) ;
-            System.out.println("ut_connected " + ut_connected+" ut_even "+ut_even) ;
+            if(!su_notSet && !ut_notSet && !st_connected) {
+                pathLength = su_path + ut_path;
+                if(pathLength <= (iterationCount)*2 - 1)
+                    connected = true;
+            }
+            System.out.println("st_connected " + st_connected+" st_even "+st_even + " st_path "+st_path) ;
+            System.out.println("su_connected " + su_connected+" su_even "+su_even + " su_path "+su_path) ;
+            System.out.println("ut_connected " + ut_connected+" ut_even "+ut_even + " ut_path "+ut_path) ;
+            System.out.println("path " + pathLength);
         }
         
         if(!connected)
