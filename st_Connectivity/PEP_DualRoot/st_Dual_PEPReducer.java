@@ -79,7 +79,7 @@ public class st_Dual_PEPReducer extends Reducer<Text, Text, Text, Text> {
             if(stConnected)
                 context.getCounter(MoreIterations.bothBranchesMeet).increment(1);
             context.write(key, new Text(outNode1.getNodeInfo()));  
-            if(outNode1.getColor == Node.Color.GRAY)        	
+            if(outNode1.getColor() == Node.Color.GRAY)        	
                 context.getCounter(MoreIterations.numberOfIterations).increment(1);
         }
         // Even paths are distinguished by the presence of BLACK and GRAY pairs for the common nodes
