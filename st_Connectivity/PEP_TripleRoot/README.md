@@ -22,5 +22,8 @@ Compile using regular hadoop compilation techniques and pack the classes in to a
 
     hadoop jar st_Triple_PEPJob.jar st_Triple_PEPJob <input files path> <output file path> <a name for the job> <s> <t> <u>
 
+## Note 
+Note that we have only tested the following on undirected graph, where in by every edge **(u,v)** is represented by **u** having **v** in its adj list
+and **v** having **u** in its adj list. Though the algorithm is designed to work on directed graphs as well, no experimental testing has been done.
 
 &copy;IIIT Delhi , 2015.
