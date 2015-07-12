@@ -46,27 +46,26 @@ int main(int argc , char *argv[]) {
 		
 		if( i == 0 || i % 1000 == 0) {
 			percent = (double(i)/double(numNodes)) * 100 ;
-			std::cout << percent <<"\% written.\n";
+			std::cout << percent <<"\% written\n";
 		}
 		if(linesWritten >= linesPerSplit) {
 			linesWritten = 0;
 			outFile.close();
 			outFile.open(fileName + std::to_string(fileId));
-			std::cout << "Writing to " << fileName << fileId <<".\n";
+			std::cout << "Writing to " << fileName << fileId <<"\n";
 			fileId++;
 		}
 		
-		outFile << i << "\tInteger.MAX_VALUE,null|WHITE|";
+		//outFile << i << "\tInteger.MAX_VALUE,null|WHITE|";
 		for(long j = 0; j < numNodes; j++, counter++) {
 			randomDouble = distribution(generator);
 			if(randomDouble - prob <= 0.0)
-				outFile << j <<",";
+				outFile << i << "\t" << j <<"\n";
 			if(counter >= 100000) {
 				counter = 0;
 				outFile.flush();
 			}
 		}
-		outFile << "\n";
 	}
 	std::chrono::high_resolution_clock::time_point t2 = std::chrono::high_resolution_clock::now();
 	auto duration = std::chrono::duration_cast<std::chrono::seconds>( t2 - t1 ).count();
