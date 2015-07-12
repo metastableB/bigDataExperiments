@@ -55,48 +55,48 @@ public class st_Triple_PEPReducer extends Reducer<Text, Text, Text, Text> {
                 outNode1.reset();
                 outNode2.reset();
                 blackFound = false;
-            } else {
-                if (inNode.getColor() == Node.Color.BLACK) {
-                    if(inNode.getStartPoint().equals(s)) {
-                        s_black = true;
-                        s_found = true;
-                    }
-                    else if (inNode.getStartPoint().equals(t)){
-                        t_found = true;
-                        t_black = true;
-                    }
-                    else {
-                        u_found = true;
-                        u_black = true;
-                    }
-                    outNode2.setDistance(inNode.getDistance());
-                    outNode2.setColor(inNode.getColor());
-                    outNode2.setStartPoint(inNode.getStartPoint());
-                    blackFound = (s_black || u_black || t_black);
-                } 
-                else if (inNode.getColor() == Node.Color.GRAY) {
-                    if(inNode.getStartPoint().equals(s)) {
-                        s_gray = true;
-                        s_found = true;
-                    }
-                    else if (inNode.getStartPoint().equals(t)){
-                        t_found = true;
-                        t_gray = true;
-                    }
-                    else {
-                        u_found = true;
-                        u_gray = true;
-                    }
-                    if(!blackFound){
-                        outNode1.setDistance(inNode.getDistance());
-                        outNode1.setColor(inNode.getColor());
-                    }
-                        outNode1.setStartPoint(inNode.getStartPoint());
+            } 
+            if (inNode.getColor() == Node.Color.BLACK) {
+                if(inNode.getStartPoint().equals(s)) {
+                    s_black = true;
+                    s_found = true;
                 }
-                else if (inNode.getColor() == Node.Color.WHITE && !blackFound ) {
-                    outNode1.setEdges(inNode.getEdges());
+                else if (inNode.getStartPoint().equals(t)){
+                    t_found = true;
+                    t_black = true;
                 }
+                else {
+                    u_found = true;
+                    u_black = true;
+                }
+                outNode2.setDistance(inNode.getDistance());
+                outNode2.setColor(inNode.getColor());
+                outNode2.setStartPoint(inNode.getStartPoint());
+                blackFound = (s_black || u_black || t_black);
+            } 
+            else if (inNode.getColor() == Node.Color.GRAY) {
+                if(inNode.getStartPoint().equals(s)) {
+                    s_gray = true;
+                    s_found = true;
+                }
+                else if (inNode.getStartPoint().equals(t)){
+                    t_found = true;
+                    t_gray = true;
+                }
+                else {
+                    u_found = true;
+                    u_gray = true;
+                }
+                if(!blackFound){
+                    outNode1.setDistance(inNode.getDistance());
+                    outNode1.setColor(inNode.getColor());
+                }
+                    outNode1.setStartPoint(inNode.getStartPoint());
             }
+            else if (inNode.getColor() == Node.Color.WHITE && !blackFound ) {
+                outNode1.setEdges(inNode.getEdges());
+            }
+        
         }
         
         if(blackFound) {
