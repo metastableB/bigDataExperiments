@@ -109,13 +109,15 @@ public class st_Triple_PEPJob extends Configured implements Tool {
                 else st_path = (iterationCount+1)*2 - 1;
                 st_path = st_path - 1;
                 pathLength = st_path;
-            } else if(ut_connected && ut_notSet && !st_connected) {
+            } 
+            if(ut_connected && ut_notSet) {
                 ut_notSet = false;      
                 if(ut_even)
                     ut_path = (iterationCount)*2;
                 else ut_path = (iterationCount+1)*2 - 1;
                 ut_path = ut_path - 1;
-            } else if (su_connected && su_notSet && !st_connected) {
+            }
+            if (su_connected && su_notSet) {
                 su_notSet = false;      
                 if(su_even)
                     su_path = (iterationCount)*2;

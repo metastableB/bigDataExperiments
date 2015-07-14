@@ -102,30 +102,30 @@ public class st_Triple_PEPReducer extends Reducer<Text, Text, Text, Text> {
         if(blackFound) {
             context.write(key, new Text(outNode2.getNodeInfo()));      
             if(s_found && t_found)
-                context.getCounter(MoreIterations.stMeet).increment(1);
+                context.getCounter(PathCounters.stMeet).increment(1);
             if(s_found && u_found)
-                context.getCounter(MoreIterations.suMeet).increment(1);
+                context.getCounter(PathCounters.suMeet).increment(1);
             if(t_found && u_found)
-                context.getCounter(MoreIterations.utMeet).increment(1);
+                context.getCounter(PathCounters.utMeet).increment(1);
         }
         else { // WHITE OR GRAY
             if(s_found && t_found)
-                context.getCounter(MoreIterations.stMeet).increment(1);
+                context.getCounter(PathCounters.stMeet).increment(1);
             if(s_found && u_found)
-                context.getCounter(MoreIterations.suMeet).increment(1);
+                context.getCounter(PathCounters.suMeet).increment(1);
             if(t_found && u_found)
-                context.getCounter(MoreIterations.utMeet).increment(1);
+                context.getCounter(PathCounters.utMeet).increment(1);
             context.write(key, new Text(outNode1.getNodeInfo()));      
             if(outNode1.getColor() == Node.Color.GRAY)	
                 context.getCounter(MoreIterations.numberOfIterations).increment(1);
         }
         // Even paths are distinguished by the presence of BLACK and GRAY pairs for the common nodes
         if((( s_black && t_gray) || (t_black && s_gray)) && (s_found) && (t_found))
-            context.getCounter(MoreIterations.stEvenPath).increment(1);
+            context.getCounter(PathCounters.stEvenPath).increment(1);
         if((( s_black && u_gray) || (u_black && s_gray)) && (s_found) && (u_found))
-            context.getCounter(MoreIterations.suEvenPath).increment(1);
+            context.getCounter(PathCounters.suEvenPath).increment(1);
         if((( u_black && t_gray) || (t_black && u_gray)) && (u_found) && (t_found))
-            context.getCounter(MoreIterations.utEvenPath).increment(1);
+            context.getCounter(PathCounters.utEvenPath).increment(1);
     }
 }
 
