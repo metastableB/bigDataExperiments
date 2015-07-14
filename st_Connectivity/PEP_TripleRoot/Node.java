@@ -12,6 +12,9 @@ import java.util.*;
 import org.apache.hadoop.io.Text;
 
 // Defining a counter
+// NOTE : For some odd reason I'm yet to debugg, adding every thing 
+//        into the same enum gave an error. I had to split them into 
+//        two different enums
 enum MoreIterations {
     numberOfIterations, stMeet, stEvenPath,suMeet, suEvenPath,utMeet, utEvenPath
 }
